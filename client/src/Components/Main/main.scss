@@ -1,0 +1,42 @@
+.search {
+  margin-top: 1.5rem;
+  form {
+    display: flex;
+    justify-content: center;
+    .search__input {
+      font-size: 1.125rem;
+      height: 2.5rem;
+      border: 1px solid rgba(27, 27, 27, 0.4);
+      padding-left: 0.5rem;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    .search__start-date,
+    .search__end-date {
+      font-weight: 900;
+      font-size: 1.125rem;
+      min-width: 150px;
+      height: 2.5rem;
+      border: 1px solid rgba(27, 27, 27, 0.4);
+      border-radius: 5px;
+      padding: 0rem 0.5rem;
+      border-left: unset;
+    }
+    .search__button {
+      font-size: 1.125rem;
+      height: 2.5rem;
+      border: 1px solid rgba(27, 27, 27, 0.4);
+      padding: 0rem 0.5rem;
+      border-radius: 5px;
+    }
+  }
+}
+
+.main-content {
+  display: flex;
+  margin-top: 1rem;
+  .main-content__random {
+    width: 60%;
+  }
+}

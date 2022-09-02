@@ -1,0 +1,34 @@
+@import "nullstyle.scss";
+
+@font-face {
+  src: url("Fonts/Rubik-SemiBold.ttf");
+  font-family: "Rubik-Semibold";
+}
+
+@font-face {
+  src: url("Fonts/Rubik-Regular.ttf");
+  font-family: "Rubik-Regular";
+}
+
+$font-stack: "Rubik-Regular", Arial, Helvetica;
+
+body {
+  font-family: $font-stack;
+  padding: 0rem 5%;
+}
+p {
+  font-size: 1rem;
+}
+h1 {
+  font-family: "Rubik-Semibold";
+  font-size: 2.125rem;
+}
+
+h2 {
+  font-family: "Rubik-Semibold";
+  font-size: 1.5rem;
+}
+h3,
+h4 {
+  font-size: 1.2rem;
+}
