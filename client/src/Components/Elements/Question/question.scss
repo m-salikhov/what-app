@@ -2,6 +2,8 @@
   border: 1px solid rgba(27, 27, 27, 0.4);
   margin: 1rem 0rem;
   padding-bottom: 0.5rem;
+  border-radius: 10px;
+
   .question__header {
     display: flex;
     justify-content: space-between;
@@ -53,5 +55,17 @@
         padding-left: 0.5rem;
       }
     }
+  }
+}
+
+.ans {
+  max-height: 400px;
+  overflow: hidden;
+  transition: max-height 0.7s;
+  // transition-timing-function: linear;
+
+  &.close {
+    max-height: 0;
+    overflow: hidden;
   }
 }

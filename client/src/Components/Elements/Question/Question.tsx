@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { QuestionType } from "../../../Types/entities";
+import { QuestionType } from "../../../Types/question";
 import Add from "./Add";
 import Answer from "./Answer";
 
@@ -22,7 +22,10 @@ const Question: FC<{ q: QuestionType; random?: boolean }> = ({ q, random }) => {
         {showAnswer ? "Скрыть" : "Показать"} ответ
       </h4>
       {/* TODO сделать анимацию появления ответа */}
-      {showAnswer && <Answer q={q} />}
+      {/* {showAnswer && <Answer q={q} />} */}
+      <div className={showAnswer ? "ans open" : "ans close"}>
+        <Answer q={q} />
+      </div>
     </div>
   );
 };

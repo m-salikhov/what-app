@@ -1,9 +1,30 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { User } from './modules/users/entity/user.entity';
+import { UsersModule } from './modules/users/users.module';
+import { TournamentsModule } from './modules/tournaments/tournaments.module';
+import { Tournament } from './Modules/tournaments/entities/tournament.entity';
+import { Editor } from './Modules/tournaments/entities/editors.entity';
+import { Question } from './Modules/tournaments/entities/question.entity';
+import { Source } from './Modules/tournaments/entities/sourse.entity';
 
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    // TypeOrmModule.forFeature([User, DocEntity]),
+
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'what_db',
+      entities: [User, Tournament, Editor, Question, Source],
+      synchronize: true,
+    }),
+    UsersModule,
+    TournamentsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

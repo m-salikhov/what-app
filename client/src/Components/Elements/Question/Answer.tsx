@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { QuestionType } from "../../../Types/entities";
+import { QuestionType } from "../../../Types/question";
 
 const Answer: FC<{ q: QuestionType }> = ({ q }) => {
   return (
@@ -28,7 +28,7 @@ const Answer: FC<{ q: QuestionType }> = ({ q }) => {
           {q.source.map((v, i) => {
             return (
               <p key={i}>
-                {i + 1}. {v}
+                {++i}. {v}
               </p>
             );
           })}

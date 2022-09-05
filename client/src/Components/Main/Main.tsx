@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { QuestionType } from "../../Types/entities";
+import { QuestionType } from "../../Types/question";
+
 import Question from "../Elements/Question/Question";
 
 import "./main.scss";
@@ -8,6 +9,7 @@ const test: QuestionType[] = [
   {
     id: 11,
     qNumber: 13,
+    type: "regular",
     tourNumber: 3,
     text: "Один из создателей Фантомаса вспоминал, как однажды встретил писателя-интеллектуала, который читал его книгу, СДЕЛАВ ЭТО. В рассказе Андрея Колганова юный фанат Цоя пробрался в библиотеку с лезвием, но обнаружил, что кто-то уже успел СДЕЛАТЬ ЭТО. Какие два слова, начинающиеся на одну и ту же букву, мы заменили словами СДЕЛАТЬ ЭТО?",
     answer: "оторвать обложку",
@@ -21,6 +23,7 @@ const test: QuestionType[] = [
   },
   {
     id: 22,
+    type: "regular",
     qNumber: 17,
     tourNumber: 2,
     text: 'В романе 1875 года владелец ЕЁ в разговоре со своим другом цинично называет ЕЁ "предметом роскоши". Однако друг резонно замечает, что из-за НЕЁ семейная жизнь хозяина находится под угрозой. Назовите ЕЁ точно.',
@@ -35,6 +38,7 @@ const test: QuestionType[] = [
     author: "Виктор Мялов (Днепр)",
   },
   {
+    type: "regular",
     id: 134,
     qNumber: 4,
     tourNumber: 1,
@@ -52,6 +56,7 @@ const test: QuestionType[] = [
   {
     id: 13,
     qNumber: 4,
+    type: "regular",
     tourNumber: 1,
     add: "The officia account of ****** Footba Cub",
     text: " Так выглядел заголовок твиттера известного клуба в годовщину выдающегося сезона. Восстановив пропуск, ответьте: под руководством кого?",
@@ -63,6 +68,7 @@ const test: QuestionType[] = [
     author: "Илья Иванов (Путилково)",
   },
 ];
+const tourney = {};
 
 const Main = () => {
   const [message, setMessage] = useState("");
