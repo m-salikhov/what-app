@@ -20,7 +20,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Question.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: 'regular' }),
     __metadata("design:type", String)
 ], Question.prototype, "type", void 0);
 __decorate([
@@ -32,7 +32,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Question.prototype, "tourNumber", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: '' }),
     __metadata("design:type", String)
 ], Question.prototype, "add", void 0);
 __decorate([
@@ -44,11 +44,11 @@ __decorate([
     __metadata("design:type", String)
 ], Question.prototype, "answer", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: '' }),
     __metadata("design:type", String)
 ], Question.prototype, "alterAnswer", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: '' }),
     __metadata("design:type", String)
 ], Question.prototype, "comment", void 0);
 __decorate([
@@ -56,13 +56,12 @@ __decorate([
     __metadata("design:type", String)
 ], Question.prototype, "author", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => sourse_entity_1.Source, (source) => source.question),
+    (0, typeorm_1.OneToMany)(() => sourse_entity_1.Source, (source) => source.question, { eager: true }),
     __metadata("design:type", Array)
 ], Question.prototype, "source", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => tournament_entity_1.Tournament, (tournament) => tournament.questions, {
         onDelete: 'CASCADE',
-        eager: true,
     }),
     __metadata("design:type", tournament_entity_1.Tournament)
 ], Question.prototype, "tournament", void 0);

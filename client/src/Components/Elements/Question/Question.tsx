@@ -18,9 +18,7 @@ const Question: FC<{ q: QuestionType; random?: boolean }> = ({ q, random }) => {
       <div className="question__text">
         <p>{q.text}</p>
       </div>
-      <h4 onClick={() => setShowAnswer(!showAnswer)}>
-        {showAnswer ? "Скрыть" : "Показать"} ответ
-      </h4>
+      <h4 onClick={() => setShowAnswer(!showAnswer)}>Oтвет</h4>
       {/* TODO сделать анимацию появления ответа */}
       {/* {showAnswer && <Answer q={q} />} */}
       <div className={showAnswer ? "ans open" : "ans close"}>

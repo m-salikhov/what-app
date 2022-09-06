@@ -17,7 +17,7 @@ const Answer: FC<{ q: QuestionType }> = ({ q }) => {
           <span>Комментарий:</span> {q.comment}
         </p>
       )}
-      {q.source?.length == 1 && (
+      {q.source?.length === 1 && (
         <p className="answer__source--one">
           <span>Источник:</span> {q.source}
         </p>

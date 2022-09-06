@@ -1,7 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Tournament = void 0;
-class Tournament {
+exports.getTournametDto = exports.TournamentDto = void 0;
+class TournamentDto {
 }
-exports.Tournament = Tournament;
+exports.TournamentDto = TournamentDto;
+class getTournametDto {
+}
+exports.getTournametDto = getTournametDto;
 //# sourceMappingURL=tournament.dto.js.map

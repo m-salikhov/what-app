@@ -1,5 +1,6 @@
-export class Question {
-  type: 'regular' | 'double' | 'triple' | 'other';
+export class QuestionDto {
+  id: number;
+  type?: 'regular' | 'double' | 'triple' | 'other';
   qNumber: number;
   tourNumber: number;
   add?: string;

@@ -1,7 +1,7 @@
 import "./header.scss";
 import { Link } from "react-router-dom";
 
-let x: any = true;
+let x: any = false;
 
 const Header = () => {
   return (

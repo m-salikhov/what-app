@@ -33,25 +33,15 @@ export class UsersService {
   }
 
   async getUser(getUserDto: GetUserDto): Promise<User | string> {
-    if ('id' in getUserDto) {
+    try {
+      let [key, value]: string[] = Object.entries(getUserDto)[0];
       const user = await this.userRepo.findOne({
-        where: { id: getUserDto.id },
+        where: { [key]: value },
       });
       return user ? user : 'User not found';
+    } catch (e) {
+      throw new BadRequestException();
     }
-    if ('email' in getUserDto) {
-      const user = await this.userRepo.findOne({
-        where: { email: getUserDto.email },
-      });
-      return user ? user : 'User not found';
-    }
-    if ('username' in getUserDto) {
-      const user = await this.userRepo.findOne({
-        where: { username: getUserDto.username },
-      });
-      return user ? user : 'User not found';
-    }
-    throw new BadRequestException('invalid request argument');
   }
 
   async deleteUser(id: string) {

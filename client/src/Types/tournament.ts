@@ -5,6 +5,7 @@ export interface TournamentType {
   title: string;
   date: string;
   tours: number;
+  questionsQuantity: number;
   questions: QuestionType[];
   editors: string[];
   dateUpload: string;

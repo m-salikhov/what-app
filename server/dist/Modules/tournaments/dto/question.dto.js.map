@@ -1,1 +1,1 @@
-{"version":3,"file":"question.dto.js","sourceRoot":"","sources":["../../../../src/Modules/tournaments/dto/question.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,QAAQ;CAWpB;AAXD,4BAWC"}
+{"version":3,"file":"question.dto.js","sourceRoot":"","sources":["../../../../src/modules/tournaments/dto/question.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,WAAW;CAYvB;AAZD,kCAYC"}

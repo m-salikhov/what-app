@@ -32,14 +32,9 @@ __decorate([
     __metadata("design:type", Number)
 ], Tournament.prototype, "tours", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => question_entity_1.Question, (question) => question.tournament),
-    __metadata("design:type", Array)
-], Tournament.prototype, "questions", void 0);
-__decorate([
-    (0, typeorm_1.ManyToMany)(() => editors_entity_1.Editor),
-    (0, typeorm_1.JoinTable)(),
-    __metadata("design:type", Array)
-], Tournament.prototype, "editors", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Tournament.prototype, "questionsQuantity", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
@@ -48,6 +43,15 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Tournament.prototype, "uploaderUuid", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => question_entity_1.Question, (question) => question.tournament),
+    __metadata("design:type", Array)
+], Tournament.prototype, "questions", void 0);
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => editors_entity_1.Editor),
+    (0, typeorm_1.JoinTable)(),
+    __metadata("design:type", Array)
+], Tournament.prototype, "editors", void 0);
 Tournament = __decorate([
     (0, typeorm_1.Entity)()
 ], Tournament);

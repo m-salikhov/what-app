@@ -12,29 +12,28 @@ import { Tournament } from './tournament.entity';
 export class Question {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column()
+  @Column({ default: 'regular' })
   type: 'regular' | 'double' | 'triple' | 'other';
   @Column()
   qNumber: number;
   @Column()
   tourNumber: number;
-  @Column()
-  add?: string;
+  @Column({ default: '' })
+  add: string;
   @Column()
   text: string;
   @Column()
   answer: string;
-  @Column()
+  @Column({ default: '' })
   alterAnswer?: string;
-  @Column()
-  comment?: string;
+  @Column({ default: '' })
+  comment: string;
   @Column()
   author: string;
-  @OneToMany(() => Source, (source) => source.question)
+  @OneToMany(() => Source, (source) => source.question, { eager: true })
   source: Source[];
   @ManyToOne(() => Tournament, (tournament) => tournament.questions, {
     onDelete: 'CASCADE',
-    eager: true,
   })
   tournament: Tournament;
 }

@@ -8,7 +8,4 @@ export class Editor {
 
   @Column()
   name: string;
-
-  @ManyToMany(() => Tournament, (tournament) => tournament.editors)
-  tournaments: Tournament[];
 }

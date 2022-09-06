@@ -1,5 +1,7 @@
+import axios from "axios";
 import { useState } from "react";
 import { QuestionType } from "../../Types/question";
+import { TournamentType } from "../../Types/tournament";
 
 import Question from "../Elements/Question/Question";
 
@@ -7,7 +9,6 @@ import "./main.scss";
 
 const test: QuestionType[] = [
   {
-    id: 11,
     qNumber: 13,
     type: "regular",
     tourNumber: 3,
@@ -22,7 +23,6 @@ const test: QuestionType[] = [
     author: "Владимир Сушков (Саранск)",
   },
   {
-    id: 22,
     type: "regular",
     qNumber: 17,
     tourNumber: 2,
@@ -39,7 +39,6 @@ const test: QuestionType[] = [
   },
   {
     type: "regular",
-    id: 134,
     qNumber: 4,
     tourNumber: 1,
     add: "https://db.chgk.info/sites/default/files/scrull2_2.png",
@@ -54,7 +53,6 @@ const test: QuestionType[] = [
     author: "Максим Мерзляков (Воронеж)",
   },
   {
-    id: 13,
     qNumber: 4,
     type: "regular",
     tourNumber: 1,
@@ -68,13 +66,30 @@ const test: QuestionType[] = [
     author: "Илья Иванов (Путилково)",
   },
 ];
-const tourney = {};
+const tourney: TournamentType = {
+  title: "test tourney",
+  date: "11.03.2021",
+  tours: 1,
+  questionsQuantity: 4,
+  questions: test,
+  editors: ["Peter Parker", "Пушкин Александр Сергеевич"],
+  dateUpload: "05.09.2022",
+  uploaderUuid: "Test",
+};
+
+const onClick = async () => {
+  await axios.post("/tournaments", tourney);
+};
 
 const Main = () => {
   const [message, setMessage] = useState("");
 
   return (
     <main>
+      {/* Тестовая кнопка. Убрать! */}
+      <button type="button" onClick={onClick}>
+        button
+      </button>
       <div className="search">
         <form
           action=""

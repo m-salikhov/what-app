@@ -7,6 +7,8 @@ export class User {
   @Column()
   username: string;
   @Column()
+  role: 'user' | 'superuser' | 'admin';
+  @Column()
   email: string;
   @Column()
   password: string;

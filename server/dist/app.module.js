@@ -26,6 +26,7 @@ AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot({ isGlobal: true }),
             typeorm_1.TypeOrmModule.forRoot({
+                autoLoadEntities: true,
                 type: 'sqlite',
                 database: 'what_db',
                 entities: [user_entity_1.User, tournament_entity_1.Tournament, editors_entity_1.Editor, question_entity_1.Question, sourse_entity_1.Source],

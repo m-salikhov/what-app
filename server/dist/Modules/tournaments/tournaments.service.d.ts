@@ -1,2 +1,19 @@
+import { Repository } from 'typeorm';
+import { QuestionDto } from './dto/question.dto';
+import { TournamentDto } from './dto/tournament.dto';
+import { Editor } from './entities/editors.entity';
+import { Question } from './entities/question.entity';
+import { Source } from './entities/sourse.entity';
+import { Tournament } from './entities/tournament.entity';
 export declare class TournamentsService {
+    private tournamentRepo;
+    private editorRepo;
+    private questionRepo;
+    private sourceRepo;
+    constructor(tournamentRepo: Repository<Tournament>, editorRepo: Repository<Editor>, questionRepo: Repository<Question>, sourceRepo: Repository<Source>);
+    createTournamet(tournament: TournamentDto): Promise<Tournament>;
+    getTournamentById(id: number): Promise<TournamentDto | "Tournament not found">;
+    getRandomQuestions(n: string): Promise<QuestionDto[]>;
+    normalizeQuestions(arr: Question[]): QuestionDto[];
+    normalizeTournament(res: Tournament): TournamentDto;
 }

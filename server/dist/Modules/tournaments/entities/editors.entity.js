@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Editor = void 0;
 const typeorm_1 = require("typeorm");
-const tournament_entity_1 = require("./tournament.entity");
 let Editor = class Editor {
 };
 __decorate([
@@ -22,10 +21,6 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Editor.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.ManyToMany)(() => tournament_entity_1.Tournament, (tournament) => tournament.editors),
-    __metadata("design:type", Array)
-], Editor.prototype, "tournaments", void 0);
 Editor = __decorate([
     (0, typeorm_1.Entity)()
 ], Editor);

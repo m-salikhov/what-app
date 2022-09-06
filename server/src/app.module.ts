@@ -17,9 +17,11 @@ import { Source } from './Modules/tournaments/entities/sourse.entity';
     // TypeOrmModule.forFeature([User, DocEntity]),
 
     TypeOrmModule.forRoot({
+      autoLoadEntities: true,
       type: 'sqlite',
       database: 'what_db',
       entities: [User, Tournament, Editor, Question, Source],
+      // entities: [__dirname + '/../**/*.entity.{js,ts}'],
       synchronize: true,
     }),
     UsersModule,

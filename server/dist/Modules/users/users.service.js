@@ -32,25 +32,16 @@ let UsersService = class UsersService {
         return await this.userRepo.save(Object.assign(Object.assign({}, user), { password: hash }));
     }
     async getUser(getUserDto) {
-        if ('id' in getUserDto) {
+        try {
+            let [key, value] = Object.entries(getUserDto)[0];
             const user = await this.userRepo.findOne({
-                where: { id: getUserDto.id },
+                where: { [key]: value },
             });
             return user ? user : 'User not found';
         }
-        if ('email' in getUserDto) {
-            const user = await this.userRepo.findOne({
-                where: { email: getUserDto.email },
-            });
-            return user ? user : 'User not found';
+        catch (e) {
+            throw new common_1.BadRequestException();
         }
-        if ('username' in getUserDto) {
-            const user = await this.userRepo.findOne({
-                where: { username: getUserDto.username },
-            });
-            return user ? user : 'User not found';
-        }
-        throw new common_1.BadRequestException('invalid request argument');
     }
     async deleteUser(id) {
         const user = await this.userRepo.findOne({ where: { id } });
