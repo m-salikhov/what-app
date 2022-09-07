@@ -77,6 +77,7 @@ export class TournamentsService {
       randomIds.map(async (v) => {
         return await this.questionRepo.findOne({
           where: { id: v.id },
+          relations: ['tournament'],
         });
       }),
     );

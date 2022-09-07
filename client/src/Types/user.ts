@@ -1,3 +1,11 @@
+export interface UserType {
+  id?: string;
+  email: string;
+  username: string;
+  role: "user" | "superuser" | "admin";
+  password?: string;
+}
+
 export type getUserType =
   | {
       id: string;

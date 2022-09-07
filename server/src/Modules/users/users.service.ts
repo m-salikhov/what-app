@@ -1,7 +1,7 @@
 import {
-  BadRequestException,
   ConflictException,
   Injectable,
+  NotFoundException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -32,20 +32,18 @@ export class UsersService {
     });
   }
 
-  async getUser(getUserDto: GetUserDto): Promise<User | string> {
-    try {
-      let [key, value]: string[] = Object.entries(getUserDto)[0];
-      const user = await this.userRepo.findOne({
-        where: { [key]: value },
-      });
-      return user ? user : 'User not found';
-    } catch (e) {
-      throw new BadRequestException();
-    }
+  async getUser(getUserDto: GetUserDto): Promise<User> {
+    let [key, value]: string[] = Object.entries(getUserDto)[0];
+    const user = await this.userRepo.findOne({
+      where: { [key]: value },
+    });
+    if (!user) throw new NotFoundException('user not found');
+    return user;
   }
 
   async deleteUser(id: string) {
     const user = await this.userRepo.findOne({ where: { id } });
+    if (!user) throw new NotFoundException('user not found');
     return await this.userRepo.remove(user);
   }
 }

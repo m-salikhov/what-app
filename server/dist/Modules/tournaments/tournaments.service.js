@@ -93,6 +93,7 @@ let TournamentsService = class TournamentsService {
         const random = await Promise.all(randomIds.map(async (v) => {
             return await this.questionRepo.findOne({
                 where: { id: v.id },
+                relations: ['tournament'],
             });
         }));
         return this.normalizeQuestions(random);

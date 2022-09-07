@@ -5,6 +5,6 @@ export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
     createUser(user: CreateUserDto): Promise<import("./entity/user.entity").User>;
-    getUser(getUserDto: GetUserDto): Promise<string | import("./entity/user.entity").User>;
+    getUser(getUserDto: GetUserDto): Promise<import("./entity/user.entity").User>;
     delOneCar(id: string): Promise<import("./entity/user.entity").User>;
 }

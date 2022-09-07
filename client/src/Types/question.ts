@@ -1,3 +1,5 @@
+import { TournamentType } from "./tournament";
+
 export interface QuestionType {
   id?: number;
   type: "regular" | "double" | "triple" | "other";
@@ -13,4 +15,5 @@ export interface QuestionType {
   comment?: string;
   source?: string[];
   author: string;
+  tournament?: TournamentType;
 }

@@ -32,19 +32,18 @@ let UsersService = class UsersService {
         return await this.userRepo.save(Object.assign(Object.assign({}, user), { password: hash }));
     }
     async getUser(getUserDto) {
-        try {
-            let [key, value] = Object.entries(getUserDto)[0];
-            const user = await this.userRepo.findOne({
-                where: { [key]: value },
-            });
-            return user ? user : 'User not found';
-        }
-        catch (e) {
-            throw new common_1.BadRequestException();
-        }
+        let [key, value] = Object.entries(getUserDto)[0];
+        const user = await this.userRepo.findOne({
+            where: { [key]: value },
+        });
+        if (!user)
+            throw new common_1.NotFoundException('user not found');
+        return user;
     }
     async deleteUser(id) {
         const user = await this.userRepo.findOne({ where: { id } });
+        if (!user)
+            throw new common_1.NotFoundException('user not found');
         return await this.userRepo.remove(user);
     }
 };
