@@ -4,4 +4,5 @@ export declare class User {
     role: 'user' | 'superuser' | 'admin';
     email: string;
     password: string;
+    date: string;
 }

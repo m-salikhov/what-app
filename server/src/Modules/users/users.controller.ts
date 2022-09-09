@@ -14,7 +14,9 @@ export class UsersController {
 
   @Post('getuser')
   async getUser(@Body() getUserDto: GetUserDto) {
-    return this.usersService.getUser(getUserDto);
+    const _user = await this.usersService.getUser(getUserDto);
+    const { password, ...user } = _user;
+    return user;
   }
 
   @Delete(':id')

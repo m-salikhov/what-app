@@ -19,6 +19,7 @@ const tournament_entity_1 = require("./Modules/tournaments/entities/tournament.e
 const editors_entity_1 = require("./Modules/tournaments/entities/editors.entity");
 const question_entity_1 = require("./Modules/tournaments/entities/question.entity");
 const sourse_entity_1 = require("./Modules/tournaments/entities/sourse.entity");
+const auth_module_1 = require("./modules/auth/auth.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -34,6 +35,7 @@ AppModule = __decorate([
             }),
             users_module_1.UsersModule,
             tournaments_module_1.TournamentsModule,
+            auth_module_1.AuthModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

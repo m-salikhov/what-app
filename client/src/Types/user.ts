@@ -4,6 +4,12 @@ export interface UserType {
   username: string;
   role: "user" | "superuser" | "admin";
   password?: string;
+  date: string;
+}
+
+export interface UserAuth {
+  email: string;
+  password: string;
 }
 
 export type getUserType =

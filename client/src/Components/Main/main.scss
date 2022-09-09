@@ -38,6 +38,30 @@
   margin-top: 1rem;
   .main-content__random {
     width: 50%;
+
+    .main-content__refresh {
+      display: flex;
+      .refresh {
+        display: flex;
+        cursor: pointer;
+        & div {
+          margin-left: 1rem;
+          width: 1.6rem;
+          .refresh__arrow {
+            transition: all 1s;
+
+            &.r {
+              transform: rotate(-360deg);
+            }
+          }
+
+          // .r {
+          //   transition: all 1s;
+          //   transform: rotate(90deg);
+          // }
+        }
+      }
+    }
   }
 }
 
@@ -47,5 +71,14 @@
     .main-content__random {
       width: 100%;
     }
+  }
+}
+
+@keyframes box {
+  50% {
+    left: 0;
+  }
+  90% {
+    left: 300px;
   }
 }

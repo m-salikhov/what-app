@@ -10,6 +10,7 @@ import { Tournament } from './Modules/tournaments/entities/tournament.entity';
 import { Editor } from './Modules/tournaments/entities/editors.entity';
 import { Question } from './Modules/tournaments/entities/question.entity';
 import { Source } from './Modules/tournaments/entities/sourse.entity';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { Source } from './Modules/tournaments/entities/sourse.entity';
     }),
     UsersModule,
     TournamentsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,11 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../Hooks/redux";
-import { fetchUser } from "../../Store/reducers/AsyncActionCreaters";
-// import { userSlice } from "../../Store/reducers/UserSlice";
 import { QuestionType } from "../../Types/question";
 import Question from "../Elements/Question/Question";
 import "./main.scss";
+import refreshIcon from "./refresh.svg";
 
 const Main = () => {
   const [message, setMessage] = useState("");
@@ -18,25 +16,13 @@ const Main = () => {
     });
   }, [newRandom]);
 
-  // const { setCurrentUser } = userSlice.actions;
-  const dispatch = useAppDispatch();
-  const { currentUser, isLoading } = useAppSelector(
-    (state) => state.userReducer
-  );
-  const onClick = () => {
-    dispatch(fetchUser({ id: "d00ea5b3-3df2-4b01-a345-46edb9433fbe" }));
-  };
-  console.log("currentUser", currentUser);
-  console.log("error");
+  console.log("newRandom", newRandom);
 
   return (
     <main>
       {/* Тестовая кнопка. Убрать! */}
-      <button type="button" onClick={onClick}>
-        button
-      </button>
+      <button type="button">button</button>
       {/* СДЕЛАТЬ КРУТИЛКУ? */}
-      {isLoading && <h2>идёт загрузка...</h2>}
       <div className="search">
         <form
           action=""
@@ -73,10 +59,22 @@ const Main = () => {
       </div>
       <div className="main-content">
         <div className="main-content__random">
-          <h2>Случайные вопросы</h2>
-          <button type="button" onClick={() => setNewRandom((p) => ++p)}>
-            button
-          </button>
+          <div className="main-content__refresh">
+            {" "}
+            <div className="refresh" onClick={() => setNewRandom((p) => ++p)}>
+              {" "}
+              <h2>Случайные вопросы</h2>
+              <div>
+                <img
+                  className={
+                    newRandom % 2 ? "refresh__arrow" : "refresh__arrow r"
+                  }
+                  src={refreshIcon}
+                  alt="обновить случайные"
+                />
+              </div>
+            </div>
+          </div>
           {randQuestions.map((v) => (
             <Question q={v} random={true} key={v.id} />
           ))}

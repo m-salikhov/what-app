@@ -30,7 +30,7 @@ const Header = () => {
           )}
           {/* TODO войти/выйти  */}
           <li>
-            <Link to="/">Войти</Link>
+            <Link to="/entry">Войти</Link>
           </li>
         </ul>
       </nav>
