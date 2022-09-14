@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { QuestionType } from "../../../Types/question";
 import Add from "./Add";
 import Answer from "./Answer";
+import ansArrow from "./arrow_down.svg";
 
 import "./question.scss";
 
@@ -18,7 +19,11 @@ const Question: FC<{ q: QuestionType; random?: boolean }> = ({ q, random }) => {
       <div className="question__text">
         <p>{q.text}</p>
       </div>
-      <h4 onClick={() => setShowAnswer(!showAnswer)}>Oтвет</h4>
+
+      <div className="ans__arrow" onClick={() => setShowAnswer(!showAnswer)}>
+        <h4>Oтвет</h4>
+      </div>
+
       {/* TODO сделать анимацию появления ответа */}
       {/* {showAnswer && <Answer q={q} />} */}
       <div className={showAnswer ? "ans open" : "ans close"}>

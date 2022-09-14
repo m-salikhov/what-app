@@ -35,7 +35,6 @@
   }
   h4 {
     padding-left: 0.5rem;
-    color: cornflowerblue;
   }
 
   .answer {
@@ -53,6 +52,25 @@
       font-family: "Rubik-Semibold";
       & ~ p {
         padding-left: 0.5rem;
+      }
+    }
+  }
+}
+.ans__arrow {
+  display: flex;
+  align-items: flex-end;
+  border-top: 1px solid #000;
+  padding-top: 0.3rem;
+  cursor: pointer;
+
+  & div {
+    width: 1rem;
+    margin-left: 2rem;
+    .arrow {
+      transition: all 1s;
+
+      &.o {
+        transform: rotate(180deg);
       }
     }
   }

@@ -2,18 +2,18 @@ import { QuestionDto } from './question.dto';
 export declare class TournamentDto {
     id?: number;
     title: string;
-    date: string;
+    date: number;
     questionsQuantity: number;
     tours: number;
     questions: QuestionDto[];
     editors: string[];
-    dateUpload: string;
+    dateUpload: number;
     uploaderUuid: string;
 }
 export declare class getTournametDto {
     title?: string;
-    date?: string;
+    date?: number;
     editor?: string;
-    maxDateUpload?: string;
-    minDateUploader?: string;
+    maxDateUpload?: number;
+    minDateUploader?: number;
 }

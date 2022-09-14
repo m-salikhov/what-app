@@ -14,13 +14,14 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TournamentsController = void 0;
 const common_1 = require("@nestjs/common");
+const jwt_guard_1 = require("../auth/guards/jwt.guard");
 const tournament_dto_1 = require("./dto/tournament.dto");
 const tournaments_service_1 = require("./tournaments.service");
 let TournamentsController = class TournamentsController {
     constructor(tournamentsService) {
         this.tournamentsService = tournamentsService;
     }
-    async createUser(tournament) {
+    async createTournament(tournament) {
         return this.tournamentsService.createTournamet(tournament);
     }
     async getRandomQuestions(n) {
@@ -31,12 +32,13 @@ let TournamentsController = class TournamentsController {
     }
 };
 __decorate([
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [tournament_dto_1.TournamentDto]),
     __metadata("design:returntype", Promise)
-], TournamentsController.prototype, "createUser", null);
+], TournamentsController.prototype, "createTournament", null);
 __decorate([
     (0, common_1.Get)('/random/:n'),
     __param(0, (0, common_1.Param)('n')),

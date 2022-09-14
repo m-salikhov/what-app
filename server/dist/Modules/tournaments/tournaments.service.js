@@ -77,7 +77,8 @@ let TournamentsService = class TournamentsService {
             finally { if (e_1) throw e_1.error; }
         }
         const newTournament = this.tournamentRepo.create(Object.assign(Object.assign({}, tournament), { editors: savedEditors, questions: savedQuestions }));
-        return await this.tournamentRepo.save(newTournament);
+        const savedTournament = await this.tournamentRepo.save(newTournament);
+        return savedTournament.id;
     }
     async getTournamentById(id) {
         const tournament = await this.tournamentRepo.findOne({

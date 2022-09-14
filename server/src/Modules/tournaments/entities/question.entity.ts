@@ -13,7 +13,7 @@ export class Question {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({ default: 'regular' })
-  type: 'regular' | 'double' | 'triple' | 'other';
+  type: 'regular' | 'double' | 'triple' | 'other' | 'outside';
   @Column()
   qNumber: number;
   @Column()

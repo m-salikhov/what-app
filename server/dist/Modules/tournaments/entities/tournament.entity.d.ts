@@ -3,10 +3,10 @@ import { Question } from './question.entity';
 export declare class Tournament {
     id: number;
     title: string;
-    date: string;
+    date: number;
     tours: number;
     questionsQuantity: number;
-    dateUpload: string;
+    dateUpload: number;
     uploaderUuid: string;
     questions: Question[];
     editors: Editor[];

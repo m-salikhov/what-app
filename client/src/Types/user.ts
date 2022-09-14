@@ -4,7 +4,7 @@ export interface UserType {
   username: string;
   role: "user" | "superuser" | "admin";
   password?: string;
-  date: string;
+  date: number;
 }
 
 export interface UserAuth {

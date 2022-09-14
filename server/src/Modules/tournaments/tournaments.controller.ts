@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { TournamentDto } from './dto/tournament.dto';
 import { TournamentsService } from './tournaments.service';
 
@@ -6,8 +7,9 @@ import { TournamentsService } from './tournaments.service';
 export class TournamentsController {
   constructor(private readonly tournamentsService: TournamentsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  async createUser(@Body() tournament: TournamentDto) {
+  async createTournament(@Body() tournament: TournamentDto) {
     return this.tournamentsService.createTournamet(tournament);
   }
 

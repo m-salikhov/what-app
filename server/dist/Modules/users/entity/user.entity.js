@@ -35,7 +35,7 @@ __decorate([
 ], User.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], User.prototype, "date", void 0);
 User = __decorate([
     (0, typeorm_1.Entity)()

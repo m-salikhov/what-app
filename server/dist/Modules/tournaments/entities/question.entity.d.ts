@@ -2,7 +2,7 @@ import { Source } from './sourse.entity';
 import { Tournament } from './tournament.entity';
 export declare class Question {
     id: number;
-    type: 'regular' | 'double' | 'triple' | 'other';
+    type: 'regular' | 'double' | 'triple' | 'other' | 'outside';
     qNumber: number;
     tourNumber: number;
     add: string;

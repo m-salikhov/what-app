@@ -16,12 +16,8 @@ const Main = () => {
     });
   }, [newRandom]);
 
-  console.log("newRandom", newRandom);
-
   return (
     <main>
-      {/* Тестовая кнопка. Убрать! */}
-      <button type="button">button</button>
       {/* СДЕЛАТЬ КРУТИЛКУ? */}
       <div className="search">
         <form

@@ -25,7 +25,7 @@ __decorate([
 ], Tournament.prototype, "title", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], Tournament.prototype, "date", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
@@ -37,7 +37,7 @@ __decorate([
 ], Tournament.prototype, "questionsQuantity", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], Tournament.prototype, "dateUpload", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

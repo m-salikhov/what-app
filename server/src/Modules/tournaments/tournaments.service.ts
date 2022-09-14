@@ -55,7 +55,9 @@ export class TournamentsService {
       editors: savedEditors,
       questions: savedQuestions,
     });
-    return await this.tournamentRepo.save(newTournament);
+    const savedTournament = await this.tournamentRepo.save(newTournament);
+
+    return savedTournament.id;
   }
 
   async getTournamentById(id: number) {

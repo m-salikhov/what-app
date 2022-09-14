@@ -10,7 +10,7 @@ export declare class UsersController {
         username: string;
         role: "user" | "superuser" | "admin";
         email: string;
-        date: string;
+        date: number;
     }>;
     delOneCar(id: string): Promise<import("./entity/user.entity").User>;
 }

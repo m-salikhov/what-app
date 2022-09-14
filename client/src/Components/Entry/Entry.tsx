@@ -2,10 +2,12 @@ import entryImg from "./entry_img.svg";
 import "./entry.scss";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { UserType } from "../../Types/user";
-import { getDate } from "../../Helpers/getDate";
 import { _axios } from "../../Helpers/_axios";
 import { loginUser } from "../../Store/reducers/AsyncActionCreaters";
 import { useAppDispatch, useAppSelector } from "../../Hooks/redux";
+import { Navigate } from "react-router-dom";
+import { userSlice } from "../../Store/reducers/UserSlice";
+import ModalReg from "./ModalReg";
 
 const testEmail = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
 
@@ -17,14 +19,17 @@ const Entry = () => {
     username: "",
     password: "",
     role: "user",
-    date: getDate(Date.now()),
+    date: Date.now(),
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
   const dispatch = useAppDispatch();
 
   const onSubmit = async (e: FormEvent<EventTarget>) => {
     e.preventDefault();
-    setErrorMessage((prev) => "");
+    setErrorMessage("");
+    dispatch(userSlice.actions.resetError());
 
     if (!testEmail.test(form.email)) {
       return setErrorMessage("Неверный email");
@@ -40,11 +45,18 @@ const Entry = () => {
     }
 
     if (reg) {
-      const resReg = await _axios.post<UserType>("/users", form);
-      console.log("res.data", resReg.data);
+      await _axios
+        .post<UserType>("/users", form)
+        .then((res) => {
+          dispatch(userSlice.actions.setCurrentUser(res.data));
+          setIsModalOpen(true);
+        })
+        .catch(() => setErrorMessage("Email уже зарегистрирован"));
+
       return;
     }
     dispatch(loginUser({ email: form.email, password: form.password }));
+    setIsAuth(true);
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,76 +67,93 @@ const Entry = () => {
     (state) => state.userReducer
   );
 
-  return (
-    <div className="entry__wrapper">
-      <div className="entry">
-        <div className="entry__container">
-          <div className="entry__img">
-            <img src={entryImg} alt="заглавное изображение" />
-          </div>
-          <form className="entry__form" onSubmit={onSubmit}>
-            <label className="entry__input">
-              <h2>Почта</h2>
-              <input
-                type="email"
-                onChange={onChange}
-                name="email"
-                autoComplete="on"
-                placeholder="email"
-              />
-            </label>
-            <label className={reg ? "entry__input" : "entry__input reg"}>
-              <h2>Псевдоним</h2>
-              <input
-                type="text"
-                onChange={onChange}
-                name="username"
-                autoComplete="off"
-                placeholder="username"
-              />
-            </label>
-            <label className="entry__input">
-              <h2>Пароль</h2>
-              <input
-                type="password"
-                onChange={onChange}
-                name="password"
-                autoComplete="on"
-                placeholder="password"
-              />{" "}
-            </label>
-            <label className={reg ? "entry__input" : "entry__input reg"}>
-              <h2>Повторите пароль</h2>
-              <input
-                autoComplete="on"
-                type="password"
-                name="repeatPassword"
-                placeholder="repeat password"
-                onChange={(e) => setPassRepeat(e.target.value)}
-              />{" "}
-            </label>
-            {(errorMessage || error) && (
-              <div className="entry__error">
-                <div className="entry__error--block"></div>
-                <p>{errorMessage || error}</p>
-              </div>
-            )}
+  if (isAuth && currentUser?.id) {
+    return <Navigate to="/" replace />;
+  }
 
-            <div className="entry__buttons">
-              <button type="submit">Отправить</button>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setReg(!reg);
-                }}
-              >
-                {reg ? "Авторизироваться" : "Зарегистрироваться"}
-              </button>
+  return (
+    <>
+      {/* окно при успешной регистрации */}
+      {isModalOpen ? <ModalReg /> : null}
+      <div className="entry__wrapper">
+        <div className="entry">
+          <div className="entry__container">
+            <div className="entry__img">
+              <img src={entryImg} alt="заглавное изображение" />
             </div>
-          </form>
+            <form className="entry__form" onSubmit={onSubmit}>
+              <label className="entry__input">
+                <h2>Почта</h2>
+                <input
+                  type="email"
+                  onChange={onChange}
+                  name="email"
+                  autoComplete="on"
+                  placeholder="email"
+                />
+              </label>
+              <label className={reg ? "entry__input" : "entry__input reg"}>
+                <h2>Псевдоним</h2>
+                <input
+                  type="text"
+                  onChange={onChange}
+                  name="username"
+                  autoComplete="off"
+                  placeholder="username"
+                />
+              </label>
+              <label className="entry__input">
+                <h2>Пароль</h2>
+                <input
+                  type="password"
+                  onChange={onChange}
+                  name="password"
+                  autoComplete="on"
+                  placeholder="password"
+                />{" "}
+              </label>
+              <label className={reg ? "entry__input" : "entry__input reg"}>
+                <h2>Повторите пароль</h2>
+                <input
+                  autoComplete="on"
+                  type="password"
+                  name="repeatPassword"
+                  placeholder="repeat password"
+                  onChange={(e) => setPassRepeat(e.target.value)}
+                />{" "}
+              </label>
+              {error && (
+                <div className="entry__error">
+                  <div className="entry__error--block"></div>
+                  <p>{error}</p>
+                </div>
+              )}
+              {errorMessage && (
+                <div className="entry__error">
+                  <div className="entry__error--block"></div>
+                  <p>{errorMessage}</p>
+                </div>
+              )}
+
+              <div className="entry__buttons">
+                <button type="submit">Отправить</button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setErrorMessage("");
+                    dispatch(userSlice.actions.resetError());
+                    setReg(!reg);
+                    setIsAuth(false);
+                  }}
+                >
+                  {reg ? "Авторизироваться" : "Зарегистрироваться"}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

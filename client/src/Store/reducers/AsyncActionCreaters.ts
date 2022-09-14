@@ -8,6 +8,7 @@ export const loginUser =
     try {
       dispatch(userSlice.actions.userFetching());
       const res = await axios.post<UserType>("/auth/login", loginUser);
+
       dispatch(userSlice.actions.userFetchingSuccess(res.data));
     } catch (error: any) {
       dispatch(

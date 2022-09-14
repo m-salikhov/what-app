@@ -11,7 +11,7 @@ export declare class TournamentsService {
     private questionRepo;
     private sourceRepo;
     constructor(tournamentRepo: Repository<Tournament>, editorRepo: Repository<Editor>, questionRepo: Repository<Question>, sourceRepo: Repository<Source>);
-    createTournamet(tournament: TournamentDto): Promise<Tournament>;
+    createTournamet(tournament: TournamentDto): Promise<number>;
     getTournamentById(id: number): Promise<TournamentDto | "Tournament not found">;
     getRandomQuestions(n: string): Promise<QuestionDto[]>;
     normalizeQuestions(arr: Question[]): QuestionDto[];

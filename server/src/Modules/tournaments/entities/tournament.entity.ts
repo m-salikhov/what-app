@@ -16,13 +16,13 @@ export class Tournament {
   @Column()
   title: string;
   @Column()
-  date: string;
+  date: number;
   @Column()
   tours: number;
   @Column()
   questionsQuantity: number;
   @Column()
-  dateUpload: string;
+  dateUpload: number;
   @Column()
   uploaderUuid: string;
   @OneToMany(() => Question, (question) => question.tournament)

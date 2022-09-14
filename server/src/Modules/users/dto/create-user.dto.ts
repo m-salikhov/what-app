@@ -3,5 +3,5 @@ export class CreateUserDto {
   email: string;
   password: string;
   role: 'user' | 'superuser' | 'admin';
-  date: string;
+  date: number;
 }
