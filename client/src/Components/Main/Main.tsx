@@ -7,8 +7,11 @@ import refreshIcon from "./refresh.svg";
 
 const Main = () => {
   const [message, setMessage] = useState("");
-  const [newRandom, setNewRandom] = useState(1);
+  const [newRandom, setNewRandom] = useState(0);
   const [randQuestions, setRandQuestions] = useState<QuestionType[]>([]);
+  const [randTournaments, setRandTournaments] = useState<string[]>([]);
+
+  console.log("randTournaments", randTournaments);
 
   useEffect(() => {
     axios.get("/tournaments/random/3").then((res) => {

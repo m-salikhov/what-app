@@ -148,7 +148,9 @@ const AddQuestion: FC<AddQuestionProp> = ({ handleChangeQuestion, idQ }) => {
         >
           Добавить источник +
         </p>
-        <button onClick={onAddQ}>Добавить вопрос</button>
+        <button type="button" onClick={onAddQ}>
+          Добавить вопрос
+        </button>
       </div>
     </div>
   );

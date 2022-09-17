@@ -24,11 +24,17 @@ let TournamentsController = class TournamentsController {
     async createTournament(tournament) {
         return this.tournamentsService.createTournamet(tournament);
     }
+    async getLastTen() {
+        return this.tournamentsService.getLastAddTournaments();
+    }
     async getRandomQuestions(n) {
         return this.tournamentsService.getRandomQuestions(n);
     }
     async getTournamentById(id) {
         return this.tournamentsService.getTournamentById(+id);
+    }
+    async getRandomTournaments(n) {
+        return this.tournamentsService.getRandomTournaments(n);
     }
 };
 __decorate([
@@ -39,6 +45,12 @@ __decorate([
     __metadata("design:paramtypes", [tournament_dto_1.TournamentDto]),
     __metadata("design:returntype", Promise)
 ], TournamentsController.prototype, "createTournament", null);
+__decorate([
+    (0, common_1.Get)('/last'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], TournamentsController.prototype, "getLastTen", null);
 __decorate([
     (0, common_1.Get)('/random/:n'),
     __param(0, (0, common_1.Param)('n')),
@@ -53,6 +65,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], TournamentsController.prototype, "getTournamentById", null);
+__decorate([
+    (0, common_1.Get)('/randomt/:n'),
+    __param(0, (0, common_1.Param)('n')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], TournamentsController.prototype, "getRandomTournaments", null);
 TournamentsController = __decorate([
     (0, common_1.Controller)('tournaments'),
     __metadata("design:paramtypes", [tournaments_service_1.TournamentsService])

@@ -47,12 +47,9 @@ const Entry = () => {
     if (reg) {
       await _axios
         .post<UserType>("/users", form)
-        .then((res) => {
-          dispatch(userSlice.actions.setCurrentUser(res.data));
-          setIsModalOpen(true);
-        })
         .catch(() => setErrorMessage("Email уже зарегистрирован"));
-
+      await dispatch(loginUser({ email: form.email, password: form.password }));
+      setIsModalOpen(true);
       return;
     }
     dispatch(loginUser({ email: form.email, password: form.password }));

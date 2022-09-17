@@ -87,6 +87,32 @@ export class TournamentsService {
     return this.normalizeQuestions(random);
   }
 
+  async getRandomTournaments(n: string) {
+    const qb = this.tournamentRepo.createQueryBuilder('tournament');
+
+    const randomTitles = await qb
+      .select('tournament.title')
+      .orderBy('RANDOM()')
+      .limit(+n)
+      .getMany();
+
+    const randomTitlesNormalize = randomTitles.map((v) => v.title);
+
+    return randomTitlesNormalize;
+  }
+
+  async getLastAddTournaments() {
+    const tournament = await this.tournamentRepo.find({
+      order: { dateUpload: 'DESC' },
+      select: { title: true },
+      skip: 2,
+      take: 1,
+    });
+
+    return tournament;
+    // console.log('first');
+  }
+
   normalizeQuestions(arr: Question[]): QuestionDto[] {
     return arr.map((el) => {
       const normSources = el.source.map((el) => el.link);

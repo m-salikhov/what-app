@@ -13,6 +13,11 @@ export class TournamentsController {
     return this.tournamentsService.createTournamet(tournament);
   }
 
+  @Get('/last')
+  async getLastTen() {
+    return this.tournamentsService.getLastAddTournaments();
+  }
+
   @Get('/random/:n')
   async getRandomQuestions(@Param('n') n: string) {
     return this.tournamentsService.getRandomQuestions(n);
@@ -21,5 +26,10 @@ export class TournamentsController {
   @Get(':id')
   async getTournamentById(@Param('id') id: string) {
     return this.tournamentsService.getTournamentById(+id);
+  }
+
+  @Get('/randomt/:n')
+  async getRandomTournaments(@Param('n') n: string) {
+    return this.tournamentsService.getRandomTournaments(n);
   }
 }

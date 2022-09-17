@@ -27,11 +27,12 @@ const AddTournament = () => {
   const handleChangeQuestion = (q: QuestionType) => {
     const i = tournament.questions.findIndex((v) => v.idQ === q.idQ);
     if (i === -1) {
-      tournament.questions = [...tournament.questions, q];
-      setTournament(tournament);
+      const questions = [...tournament.questions, q];
+      setTournament((prev) => ({ ...prev, questions }));
     } else {
-      tournament.questions[i] = q;
-      setTournament(tournament);
+      const questions = tournament.questions;
+      questions[i] = q;
+      setTournament((prev) => ({ ...prev, questions }));
     }
   };
   const addTournament = async () => {
