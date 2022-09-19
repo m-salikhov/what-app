@@ -5,6 +5,14 @@ import Question from "../Elements/Question/Question";
 import "./main.scss";
 import refreshIcon from "./refresh.svg";
 
+// const getRandonQuestions = async () => {
+//   const res = await axios
+//     .get<QuestionType[]>("/tournaments/random/3")
+//     .then((res) => res.data);
+//   console.log("res1", res);
+//   return res;
+// };
+
 const Main = () => {
   const [message, setMessage] = useState("");
   const [newRandom, setNewRandom] = useState(0);
@@ -14,9 +22,12 @@ const Main = () => {
   console.log("randTournaments", randTournaments);
 
   useEffect(() => {
+    // const res = getRandonQuestions().then((res) => setRandQuestions(res));
+    // console.log("res", res);
     axios.get("/tournaments/random/3").then((res) => {
-      setRandQuestions(res.data);
+      setRandQuestions(() => res.data);
     });
+    // setRandQuestions(res);
   }, [newRandom]);
 
   return (

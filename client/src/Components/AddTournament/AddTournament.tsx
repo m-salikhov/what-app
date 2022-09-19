@@ -25,7 +25,7 @@ const AddTournament = () => {
     setTournament((prev) => ({ ...prev, ...field }));
   };
   const handleChangeQuestion = (q: QuestionType) => {
-    const i = tournament.questions.findIndex((v) => v.idQ === q.idQ);
+    const i = tournament.questions.findIndex((v) => v.qNumber === q.qNumber);
     if (i === -1) {
       const questions = [...tournament.questions, q];
       setTournament((prev) => ({ ...prev, questions }));
@@ -44,6 +44,8 @@ const AddTournament = () => {
     console.log("res", res.data);
   };
 
+  console.log("tournament", tournament);
+
   return (
     <div className="add__wrapper">
       <div className="add">
@@ -58,8 +60,8 @@ const AddTournament = () => {
             return (
               <AddQuestion
                 key={v}
+                numberQuestion={v}
                 handleChangeQuestion={handleChangeQuestion}
-                idQ={Math.random()}
               />
             );
           })}

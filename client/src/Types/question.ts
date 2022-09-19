@@ -2,8 +2,6 @@ import { TournamentType } from "./tournament";
 
 export interface QuestionType {
   id?: number;
-  // Для добавление вопросов на клиенте
-  idQ?: number;
   type: "regular" | "double" | "triple" | "other" | "outside";
   // номер в турнире
   qNumber: number;

@@ -1,38 +1,50 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
+import splitQuestion from "../../Helpers/splitQuestion";
 import { QuestionType } from "../../Types/question";
 import { TournamentType } from "../../Types/tournament";
 
 interface AddQuestionProp {
   handleChangeQuestion: (q: QuestionType) => void;
-  idQ: number;
+  numberQuestion: number;
 }
 
-const AddQuestion: FC<AddQuestionProp> = ({ handleChangeQuestion, idQ }) => {
-  const [sources, setSources] = useState<string[]>([]);
-  const [sourcesCount, setSourcesCount] = useState([1]);
+const getTourNumber = (n: number) => {
+  if (n == 0) {
+    return 0;
+  } else if (n > 0 && n < 13) {
+    return 1;
+  } else if (n > 12 && n < 25) {
+    return 2;
+  } else {
+    return 3;
+  }
+};
 
+const AddQuestion: FC<AddQuestionProp> = ({
+  handleChangeQuestion,
+  numberQuestion,
+}) => {
   const [question, setQuestion] = useState<QuestionType>({
-    idQ,
     type: "regular",
-    qNumber: 0,
-    tourNumber: 0,
-    add: "",
+    qNumber: numberQuestion,
+    tourNumber: getTourNumber(numberQuestion),
     text: "",
     answer: "",
-    alterAnswer: "",
-    comment: "",
-    source: sources,
+    source: [],
     author: "",
   });
+  const [isSaved, setIsSaved] = useState(false);
 
   const onChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     setQuestion({ ...question, [e.target.name]: e.target.value });
+    setIsSaved(false);
   };
 
   const onAddQ = () => {
     handleChangeQuestion(question);
+    setIsSaved(true);
   };
 
   return (
@@ -41,11 +53,21 @@ const AddQuestion: FC<AddQuestionProp> = ({ handleChangeQuestion, idQ }) => {
       <div className="add-q__header">
         <label className="add-q__number">
           <p> Номер вопроса:</p>
-          <input name="qNumber" type="text" onChange={onChange} />
+          <input
+            name="qNumber"
+            type="text"
+            onChange={onChange}
+            defaultValue={numberQuestion}
+          />
         </label>{" "}
         <label className="add-t__tour">
           <p> Номер тура:</p>
-          <input name="tourNumber" type="text" onChange={onChange} />
+          <input
+            name="tourNumber"
+            type="text"
+            onChange={onChange}
+            defaultValue={getTourNumber(numberQuestion)}
+          />
         </label>{" "}
         <label>
           {" "}
@@ -77,79 +99,26 @@ const AddQuestion: FC<AddQuestionProp> = ({ handleChangeQuestion, idQ }) => {
         <textarea
           rows={4}
           placeholder="Введите текст вопроса..."
-          onChange={onChange}
+          onChange={(e) =>
+            setQuestion((prev) => {
+              setIsSaved(false);
+              return {
+                ...prev,
+                ...splitQuestion(e.target.value),
+              };
+            })
+          }
           name="text"
         />
       </div>
-      <div className="add-q__ans">
-        <label>
-          <p> Ответ:</p>
-          <input
-            name="answer"
-            placeholder="Ответ"
-            type="text"
-            onChange={onChange}
-          />
-        </label>
-        <label>
-          <p> Зачёт:</p>
-          <input
-            name="alterAnswer"
-            placeholder="Зачёт"
-            type="text"
-            onChange={onChange}
-          />
-        </label>
-        <label>
-          <p> Автор:</p>
-          <input
-            name="author"
-            placeholder="Автор"
-            type="text"
-            onChange={onChange}
-          />
-        </label>
-      </div>
-      <div className="add-q__comment">
-        <p>Текст комментария:</p>
-        <textarea
-          rows={4}
-          placeholder="Введите текст комментария..."
-          onChange={onChange}
-          name="comment"
-        />
-      </div>
-
-      <div className="add-q__sources">
-        <p> Введите источники по одному:</p>
-        {sourcesCount.map((v, i) => {
-          return (
-            <label key={v}>
-              <input
-                name="add"
-                placeholder="Источник"
-                type="text"
-                onChange={(e) => {
-                  sources[i] = e.target.value;
-                  setSources(sources);
-                }}
-              />
-            </label>
-          );
-        })}
-      </div>
 
       <div className="add-q__footer">
-        {" "}
-        <p
-          onClick={() => {
-            setSourcesCount((p) => [...p, p.length + 1]);
-          }}
+        <button
+          type="button"
+          className={isSaved ? "save" : undefined}
+          onClick={onAddQ}
         >
-          Добавить источник +
-        </p>
-        <button type="button" onClick={onAddQ}>
-          Добавить вопрос
+          {isSaved ? "Вопрос добавлен" : "Добавить вопрос"}
         </button>
       </div>
     </div>
