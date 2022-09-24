@@ -22,7 +22,7 @@ function splitQuestion(str: string): Partial<QuestionType> {
   }
 
   let alterAnswer = "";
-  if (iAlter == -1) {
+  if (iAlter === -1) {
     alterAnswer = "";
   } else if (iComment > -1) {
     alterAnswer = normStr.substring(iAlter + 7, iComment);

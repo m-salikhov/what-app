@@ -101,15 +101,24 @@ export class TournamentsService {
     return randomTitlesNormalize;
   }
 
-  async getLastAddTournaments() {
-    const tournament = await this.tournamentRepo.find({
+  async getLastAddTournaments(n: number) {
+    if (n === -1) {
+      //Подсчитывает макс. число страниц для пагинации
+      const count = await this.tournamentRepo.count();
+      const countString = String(count);
+      const pageCount = countString.endsWith('0')
+        ? +countString.slice(0, countString.length - 1)
+        : +countString.slice(0, countString.length - 1) + 1;
+      return pageCount;
+    }
+    const tournaments = await this.tournamentRepo.find({
       order: { dateUpload: 'DESC' },
-      select: { title: true },
-      skip: 2,
-      take: 1,
+      select: { title: true, dateUpload: true },
+      skip: n,
+      take: 10,
     });
 
-    return tournament;
+    return tournaments;
     // console.log('first');
   }
 

@@ -24,8 +24,8 @@ let TournamentsController = class TournamentsController {
     async createTournament(tournament) {
         return this.tournamentsService.createTournamet(tournament);
     }
-    async getLastTen() {
-        return this.tournamentsService.getLastAddTournaments();
+    async getLastTen(n) {
+        return this.tournamentsService.getLastAddTournaments(+n);
     }
     async getRandomQuestions(n) {
         return this.tournamentsService.getRandomQuestions(n);
@@ -46,9 +46,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TournamentsController.prototype, "createTournament", null);
 __decorate([
-    (0, common_1.Get)('/last'),
+    (0, common_1.Get)('/last/:n'),
+    __param(0, (0, common_1.Param)('n')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], TournamentsController.prototype, "getLastTen", null);
 __decorate([

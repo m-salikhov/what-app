@@ -13,9 +13,9 @@ export class TournamentsController {
     return this.tournamentsService.createTournamet(tournament);
   }
 
-  @Get('/last')
-  async getLastTen() {
-    return this.tournamentsService.getLastAddTournaments();
+  @Get('/last/:n')
+  async getLastTen(@Param('n') n: string) {
+    return this.tournamentsService.getLastAddTournaments(+n);
   }
 
   @Get('/random/:n')

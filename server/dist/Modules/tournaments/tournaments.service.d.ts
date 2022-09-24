@@ -15,7 +15,7 @@ export declare class TournamentsService {
     getTournamentById(id: number): Promise<TournamentDto | "Tournament not found">;
     getRandomQuestions(n: string): Promise<QuestionDto[]>;
     getRandomTournaments(n: string): Promise<string[]>;
-    getLastAddTournaments(): Promise<Tournament[]>;
+    getLastAddTournaments(n: number): Promise<number | Tournament[]>;
     normalizeQuestions(arr: Question[]): QuestionDto[];
     normalizeTournament(res: Tournament): TournamentDto;
 }

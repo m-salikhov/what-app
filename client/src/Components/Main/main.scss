@@ -36,6 +36,7 @@
 .main-content {
   display: flex;
   margin-top: 1rem;
+  // justify-content: space-between;
   .main-content__random {
     width: 50%;
 
@@ -71,14 +72,54 @@
     .main-content__random {
       width: 100%;
     }
+    .main-content__tournaments {
+      padding-left: unset;
+      width: unset;
+    }
   }
 }
 
-@keyframes box {
-  50% {
-    left: 0;
+.main-content__tournaments {
+  padding-left: 2rem;
+  width: 50%;
+  .tournaments__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0rem 0.2rem;
+    h3:last-child {
+      padding-right: 0.25rem;
+    }
   }
-  90% {
-    left: 300px;
+
+  .tournaments__item {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgba(27, 27, 27, 0.2);
+    &:hover {
+      background-color: rgba(97, 161, 153, 0.1);
+    }
+    h4 {
+      padding: 0.5rem 0rem;
+      &:first-child {
+        cursor: pointer;
+        color: rgb(16, 74, 55);
+      }
+    }
+  }
+
+  .tournaments__footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 0.4rem;
+    div {
+      width: 1.6rem;
+      img {
+        cursor: pointer;
+      }
+    }
+    p {
+      margin: auto 1rem;
+      font-size: 1.25rem;
+    }
   }
 }

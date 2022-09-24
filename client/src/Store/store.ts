@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./reducers/UserSlice";
+import tournametReducer from "./reducers/TournamentSlice";
+
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
   userReducer,
+  tournametReducer,
 });
 
 export const store = configureStore({

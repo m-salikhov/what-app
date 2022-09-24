@@ -63,6 +63,7 @@ const Entry = () => {
   const { currentUser, isLoading, error } = useAppSelector(
     (state) => state.userReducer
   );
+  // const { title } = useAppSelector((state) => state.tournametReducer);
 
   if (isAuth && currentUser?.id) {
     return <Navigate to="/" replace />;
