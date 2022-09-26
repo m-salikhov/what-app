@@ -7,5 +7,6 @@ export declare class UsersService {
     constructor(userRepo: Repository<User>);
     createUser(user: CreateUserDto): Promise<User>;
     getUser(getUserDto: GetUserDto): Promise<User>;
+    getUsernameByUUID(uuid: string): Promise<string>;
     deleteUser(id: string): Promise<User>;
 }

@@ -32,6 +32,9 @@ let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
     }
+    async getLastTen(uuid) {
+        return this.usersService.getUsernameByUUID(uuid);
+    }
     async createUser(user) {
         return this.usersService.createUser(user);
     }
@@ -44,6 +47,13 @@ let UsersController = class UsersController {
         return this.usersService.deleteUser(id);
     }
 };
+__decorate([
+    (0, common_1.Get)('/username/:uuid'),
+    __param(0, (0, common_1.Param)('uuid')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getLastTen", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

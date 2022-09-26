@@ -1,19 +1,17 @@
 import axios from "axios";
 import { MouseEvent, useEffect, useState } from "react";
 import { getDate } from "../../Helpers/getDate";
-import { useAppDispatch, useAppSelector } from "../../Hooks/redux";
-import { tournamentSlice } from "../../Store/reducers/TournamentSlice";
+import { Link } from "react-router-dom";
 import back from "./back.svg";
 import next from "./next.svg";
+import { TournamentShortType } from "../../Types/tournament";
 
 const LastTournaments = () => {
   const [lastTenTournamebts, setLastTenTournamebts] = useState<
-    { title: string; dateUpload: number }[]
+    TournamentShortType[]
   >([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [pageCount, setPageCount] = useState(0);
-
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     axios.get(`/tournaments/last/${pageNumber * 10}`).then((res) => {
@@ -45,14 +43,8 @@ const LastTournaments = () => {
       </div>
       {lastTenTournamebts.map((v, i) => {
         return (
-          <div className="tournaments__item" key={i}>
-            <h4
-              onClick={() =>
-                dispatch(tournamentSlice.actions.setTitle(v.title))
-              }
-            >
-              {v.title}
-            </h4>
+          <div className="tournaments__item" key={v.id}>
+            <Link to={`tournament/${v.id}/${v.uploaderUuid}`}>{v.title}</Link>
             <h4>{getDate(v.dateUpload)}</h4>
           </div>
         );

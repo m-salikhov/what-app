@@ -14,6 +14,7 @@ const Question: FC<{ q: QuestionType; random?: boolean }> = ({ q, random }) => {
       <div className="question__header">
         <h3>Вопрос {q.qNumber}</h3>
         {random && <h4>из {q.tournament?.title}</h4>}
+        {!random && <h3>Тур {q.tourNumber}</h3>}
       </div>
       {q.add && <Add add={q.add} />}
       <div className="question__text">

@@ -2,8 +2,6 @@ import "./header.scss";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../Hooks/redux";
 
-let x: any = false;
-
 const Header = () => {
   const { currentUser } = useAppSelector((state) => state.userReducer);
   console.log("currentUser", currentUser);

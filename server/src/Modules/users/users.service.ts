@@ -41,6 +41,15 @@ export class UsersService {
     return user;
   }
 
+  async getUsernameByUUID(uuid: string) {
+    const user = await this.userRepo.findOne({
+      where: { id: uuid },
+      select: { username: true },
+    });
+
+    return user.username;
+  }
+
   async deleteUser(id: string) {
     const user = await this.userRepo.findOne({ where: { id } });
     if (!user) throw new NotFoundException('user not found');

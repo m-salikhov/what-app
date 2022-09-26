@@ -40,6 +40,13 @@ let UsersService = class UsersService {
             throw new common_1.NotFoundException('user not found');
         return user;
     }
+    async getUsernameByUUID(uuid) {
+        const user = await this.userRepo.findOne({
+            where: { id: uuid },
+            select: { username: true },
+        });
+        return user.username;
+    }
     async deleteUser(id) {
         const user = await this.userRepo.findOne({ where: { id } });
         if (!user)

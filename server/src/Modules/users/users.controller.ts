@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Param,
   Post,
   UseGuards,
@@ -14,6 +15,11 @@ import { UsersService } from './users.service';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Get('/username/:uuid')
+  async getLastTen(@Param('uuid') uuid: string) {
+    return this.usersService.getUsernameByUUID(uuid);
+  }
 
   @Post()
   async createUser(@Body() user: CreateUserDto) {

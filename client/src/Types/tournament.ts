@@ -11,3 +11,10 @@ export interface TournamentType {
   dateUpload: number;
   uploaderUuid: string;
 }
+
+export interface TournamentShortType {
+  id: number;
+  dateUpload: number;
+  uploaderUuid: string;
+  title: string;
+}

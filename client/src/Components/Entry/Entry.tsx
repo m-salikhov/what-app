@@ -8,19 +8,14 @@ import { useAppDispatch, useAppSelector } from "../../Hooks/redux";
 import { Navigate } from "react-router-dom";
 import { userSlice } from "../../Store/reducers/UserSlice";
 import ModalReg from "./ModalReg";
+import { initUser } from "../../Helpers/initValues";
 
 const testEmail = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
 
 const Entry = () => {
   const [reg, setReg] = useState(false);
   const [passRepeat, setPassRepeat] = useState("");
-  const [form, setForm] = useState<UserType>({
-    email: "",
-    username: "",
-    password: "",
-    role: "user",
-    date: Date.now(),
-  });
+  const [form, setForm] = useState<UserType>(initUser);
   const [errorMessage, setErrorMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
@@ -63,7 +58,6 @@ const Entry = () => {
   const { currentUser, isLoading, error } = useAppSelector(
     (state) => state.userReducer
   );
-  // const { title } = useAppSelector((state) => state.tournametReducer);
 
   if (isAuth && currentUser?.id) {
     return <Navigate to="/" replace />;

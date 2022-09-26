@@ -113,7 +113,7 @@ export class TournamentsService {
     }
     const tournaments = await this.tournamentRepo.find({
       order: { dateUpload: 'DESC' },
-      select: { title: true, dateUpload: true },
+      select: { title: true, dateUpload: true, id: true, uploaderUuid: true },
       skip: n,
       take: 10,
     });

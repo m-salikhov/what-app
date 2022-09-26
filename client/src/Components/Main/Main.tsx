@@ -22,41 +22,6 @@ const Main = () => {
 
   return (
     <main>
-      {/* СДЕЛАТЬ КРУТИЛКУ? */}
-      <div className="search">
-        <form
-          action=""
-          onSubmit={(e) => {
-            e.preventDefault();
-            console.log(message);
-          }}
-        >
-          <input
-            className="search__input"
-            type="text"
-            placeholder="название турнира"
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          {/* СТИЛИ ДЛЯ ДАТ */}
-          <input
-            type="date"
-            className="search__start-date"
-            onMouseDown={(e) => {
-              e.preventDefault();
-            }}
-          />
-          <input
-            type="date"
-            className="search__end-date"
-            onMouseDown={(e) => {
-              e.preventDefault();
-            }}
-          />
-          <button className="search__button" type="submit">
-            Найти
-          </button>
-        </form>
-      </div>
       <div className="main-content">
         <div className="main-content__random">
           <div className="main-content__refresh">

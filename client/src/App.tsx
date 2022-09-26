@@ -5,6 +5,7 @@ import Entry from "./Components/Entry/Entry";
 
 import Header from "./Components/Headers/Header";
 import Main from "./Components/Main/Main";
+import Tournament from "./Components/Tournament/Tournament";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/entry" element={<Entry />} />
         <Route path="/add" element={<AddTournament />} />
+        <Route path="/tournament/:id/:userid" element={<Tournament />} />
       </Routes>
     </BrowserRouter>
   );

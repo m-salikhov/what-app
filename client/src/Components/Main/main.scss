@@ -36,7 +36,6 @@
 .main-content {
   display: flex;
   margin-top: 1rem;
-  // justify-content: space-between;
   .main-content__random {
     width: 50%;
 
@@ -55,11 +54,6 @@
               transform: rotate(-360deg);
             }
           }
-
-          // .r {
-          //   transition: all 1s;
-          //   transform: rotate(90deg);
-          // }
         }
       }
     }
@@ -95,10 +89,11 @@
     display: flex;
     justify-content: space-between;
     border-top: 1px solid rgba(27, 27, 27, 0.2);
+    align-items: center;
     &:hover {
       background-color: rgba(97, 161, 153, 0.1);
     }
-    h4 {
+    a {
       padding: 0.5rem 0rem;
       &:first-child {
         cursor: pointer;
