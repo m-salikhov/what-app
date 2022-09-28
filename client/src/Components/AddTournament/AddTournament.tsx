@@ -6,18 +6,10 @@ import { TournamentType } from "../../Types/tournament";
 import { QuestionType } from "../../Types/question";
 import { useAppSelector } from "../../Hooks/redux";
 import { _axios } from "../../Helpers/_axios";
+import { initTournament } from "../../Helpers/initValues";
 
 const AddTournament = () => {
-  const [tournament, setTournament] = useState<TournamentType>({
-    title: "",
-    date: 0,
-    tours: 0,
-    questionsQuantity: 0,
-    questions: [],
-    editors: [],
-    dateUpload: 0,
-    uploaderUuid: "",
-  });
+  const [tournament, setTournament] = useState<TournamentType>(initTournament);
   const [qCount, setqCount] = useState([1]);
   const { currentUser } = useAppSelector((state) => state.userReducer);
 
@@ -40,6 +32,7 @@ const AddTournament = () => {
       ...tournament,
       dateUpload: Date.now(),
       uploaderUuid: currentUser?.id,
+      uploader: currentUser?.username,
     });
     console.log("res", res.data);
   };

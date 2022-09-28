@@ -8,6 +8,7 @@ export declare class Tournament {
     questionsQuantity: number;
     dateUpload: number;
     uploaderUuid: string;
+    uploader: string;
     questions: Question[];
     editors: Editor[];
 }

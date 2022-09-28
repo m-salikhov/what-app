@@ -13,6 +13,7 @@ const initialState: TournamentState = {
     title: "",
     uploaderUuid: "",
     dateUpload: 0,
+    uploader: "",
   },
   tournament: undefined,
   tournaments: [],
