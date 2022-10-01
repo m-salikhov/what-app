@@ -45,7 +45,7 @@ const LastTournaments = () => {
         return (
           <div className="tournaments__item" key={v.id}>
             <Link to={`tournament/${v.id}/${v.uploaderUuid}`}>{v.title}</Link>
-            <h4>{getDate(v.dateUpload)}</h4>
+            <h5>{getDate(v.dateUpload)}</h5>
           </div>
         );
       })}
