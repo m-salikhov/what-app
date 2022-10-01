@@ -9,6 +9,7 @@ export declare class TournamentDto {
     editors: string[];
     dateUpload: number;
     uploaderUuid: string;
+    uploader: string;
 }
 export declare class getTournametDto {
     title?: string;

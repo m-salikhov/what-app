@@ -112,11 +112,8 @@ let TournamentsService = class TournamentsService {
     async getLastAddTournaments(n) {
         if (n === -1) {
             const count = await this.tournamentRepo.count();
-            const countString = String(count);
-            const pageCount = countString.endsWith('0')
-                ? +countString.slice(0, countString.length - 1)
-                : +countString.slice(0, countString.length - 1) + 1;
-            return pageCount;
+            const t = Math.trunc(count / 10);
+            return count % 10 ? t + 1 : t;
         }
         const tournaments = await this.tournamentRepo.find({
             order: { dateUpload: 'DESC' },

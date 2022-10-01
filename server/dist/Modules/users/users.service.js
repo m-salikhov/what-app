@@ -29,7 +29,7 @@ let UsersService = class UsersService {
         if (userCheck)
             throw new common_1.ConflictException('Email уже существует в системе');
         const hash = await bcrypt.hash(user.password, 8);
-        return await this.userRepo.save(Object.assign(Object.assign({}, user), { password: hash }));
+        return await this.userRepo.save(Object.assign(Object.assign({}, user), { password: hash, date: Date.now() }));
     }
     async getUser(getUserDto) {
         let [key, value] = Object.entries(getUserDto)[0];

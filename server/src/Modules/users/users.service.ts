@@ -29,6 +29,7 @@ export class UsersService {
     return await this.userRepo.save({
       ...user,
       password: hash,
+      date: Date.now(),
     });
   }
 

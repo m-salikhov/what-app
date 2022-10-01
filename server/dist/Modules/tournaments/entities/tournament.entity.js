@@ -44,6 +44,10 @@ __decorate([
     __metadata("design:type", String)
 ], Tournament.prototype, "uploaderUuid", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Tournament.prototype, "uploader", void 0);
+__decorate([
     (0, typeorm_1.OneToMany)(() => question_entity_1.Question, (question) => question.tournament),
     __metadata("design:type", Array)
 ], Tournament.prototype, "questions", void 0);

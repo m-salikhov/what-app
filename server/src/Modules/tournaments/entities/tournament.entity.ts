@@ -25,6 +25,8 @@ export class Tournament {
   dateUpload: number;
   @Column()
   uploaderUuid: string;
+  @Column()
+  uploader: string;
   @OneToMany(() => Question, (question) => question.tournament)
   questions: Question[];
   @ManyToMany(() => Editor)

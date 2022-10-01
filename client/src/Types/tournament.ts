@@ -8,6 +8,7 @@ export interface TournamentType {
   questionsQuantity: number;
   questions: QuestionType[];
   editors: string[];
+  uploader: string;
   dateUpload: number;
   uploaderUuid: string;
 }
@@ -17,4 +18,5 @@ export interface TournamentShortType {
   dateUpload: number;
   uploaderUuid: string;
   title: string;
+  uploader: string;
 }
