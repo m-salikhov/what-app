@@ -30,11 +30,18 @@ export class AuthController {
     return req.user;
   }
 
+  // @UseGuards(JwtAuthGuard)
+  // @Get('protected')
+  // test(@Req() req, @Res({ passthrough: true }) response: Response) {
+  //   // console.log(req.cookies);
+  //   response.cookie('key', 'value');
+  //   return req.user;
+  // }
+
   @UseGuards(JwtAuthGuard)
-  @Get('protected')
-  test(@Req() req, @Res({ passthrough: true }) response: Response) {
-    // console.log(req.cookies);
-    response.cookie('key', 'value');
-    return req.user;
+  @Get('logout')
+  logout(@Res({ passthrough: true }) response: Response) {
+    response.cookie('access_token', '');
+    return 'logout';
   }
 }

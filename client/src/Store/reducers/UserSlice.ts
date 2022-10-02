@@ -23,6 +23,10 @@ export const userSlice = createSlice({
       state.currentUser = action.payload;
     },
 
+    resetCurrentUser(state) {
+      state.currentUser = undefined;
+    },
+
     resetError(state) {
       state.error = "";
     },

@@ -13,10 +13,4 @@ export interface TournamentType {
   uploaderUuid: string;
 }
 
-export interface TournamentShortType {
-  id: number;
-  dateUpload: number;
-  uploaderUuid: string;
-  title: string;
-  uploader: string;
-}
+export type TournamentShortType = Omit<TournamentType, "questions">;

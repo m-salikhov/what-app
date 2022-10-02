@@ -117,10 +117,14 @@ let TournamentsService = class TournamentsService {
         }
         const tournaments = await this.tournamentRepo.find({
             order: { dateUpload: 'DESC' },
-            select: { title: true, dateUpload: true, id: true, uploaderUuid: true },
+            select: { title: true, dateUpload: true, id: true },
             skip: n,
             take: 10,
         });
+        return tournaments;
+    }
+    async getAllTournamentsShort() {
+        const tournaments = await this.tournamentRepo.find();
         return tournaments;
     }
     normalizeQuestions(arr) {
@@ -129,8 +133,11 @@ let TournamentsService = class TournamentsService {
             return Object.assign(Object.assign({}, el), { source: normSources });
         });
     }
+    normalizeEditors(editors) {
+        return editors.map((el) => el.name);
+    }
     normalizeTournament(res) {
-        const normEditors = res.editors.map((el) => el.name);
+        const normEditors = this.normalizeEditors(res.editors);
         const normQuestions = this.normalizeQuestions(res.questions);
         const tournament = Object.assign(Object.assign({}, res), { editors: normEditors, questions: normQuestions });
         return tournament;

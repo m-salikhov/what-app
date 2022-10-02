@@ -10,18 +10,16 @@ import { useParams } from "react-router-dom";
 
 const Tournament = () => {
   const [t, setT] = useState<TournamentType>(initTournament);
-  const { id, userid } = useParams();
-  console.log("id", id);
-  console.log("userid", userid);
+  const { id } = useParams();
 
   useEffect(() => {
     axios.get(`/tournaments/${id}`).then((res) => {
       setT(res.data);
     });
-  }, []);
+  }, [id]);
 
   return (
-    <div className="tournament__container">
+    <main className="tournament__container">
       <div className="tournament__header">
         <div className="tournament__header-t">
           <h2>{t?.title}</h2>
@@ -61,7 +59,7 @@ const Tournament = () => {
           <Question q={v} key={v.id} />
         ))}
       </div>
-    </div>
+    </main>
   );
 };
 

@@ -44,7 +44,7 @@ const LastTournaments = () => {
       {lastTenTournamebts.map((v, i) => {
         return (
           <div className="tournaments__item" key={v.id}>
-            <Link to={`tournament/${v.id}/${v.uploaderUuid}`}>{v.title}</Link>
+            <Link to={`tournament/${v.id}`}>{v.title}</Link>
             <h5>{getDate(v.dateUpload)}</h5>
           </div>
         );

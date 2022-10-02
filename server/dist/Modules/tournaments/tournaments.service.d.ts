@@ -16,6 +16,8 @@ export declare class TournamentsService {
     getRandomQuestions(n: string): Promise<QuestionDto[]>;
     getRandomTournaments(n: string): Promise<string[]>;
     getLastAddTournaments(n: number): Promise<number | Tournament[]>;
+    getAllTournamentsShort(): Promise<Tournament[]>;
     normalizeQuestions(arr: Question[]): QuestionDto[];
+    normalizeEditors(editors: Editor[]): string[];
     normalizeTournament(res: Tournament): TournamentDto;
 }

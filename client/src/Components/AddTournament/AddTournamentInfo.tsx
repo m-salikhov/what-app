@@ -10,7 +10,9 @@ const AddTournamentInfo: FC<AddTournamentInfoProp> = ({ handleChange }) => {
   const [editorsCount, setEditorsCount] = useState([1]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handleChange({ [e.target.name]: e.target.value });
+    if (e.target.type === "date") {
+      handleChange({ [e.target.name]: Date.parse(e.target.value) });
+    } else handleChange({ [e.target.name]: e.target.value });
   };
   return (
     <div className="add-t">

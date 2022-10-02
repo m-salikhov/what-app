@@ -29,9 +29,9 @@ let AuthController = class AuthController {
         });
         return req.user;
     }
-    test(req, response) {
-        response.cookie('key', 'value');
-        return req.user;
+    logout(response) {
+        response.cookie('access_token', '');
+        return 'logout';
     }
 };
 __decorate([
@@ -45,13 +45,12 @@ __decorate([
 ], AuthController.prototype, "login", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
-    (0, common_1.Get)('protected'),
-    __param(0, (0, common_1.Req)()),
-    __param(1, (0, common_1.Res)({ passthrough: true })),
+    (0, common_1.Get)('logout'),
+    __param(0, (0, common_1.Res)({ passthrough: true })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
-], AuthController.prototype, "test", null);
+], AuthController.prototype, "logout", null);
 AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

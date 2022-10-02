@@ -14,7 +14,6 @@ $font-stack: "Rubik-Regular", Arial, Helvetica;
 
 body {
   font-family: $font-stack;
-  padding: 0rem 3%;
   background-color: rgba(223, 223, 223, 0.1);
 }
 p {
@@ -34,3 +33,32 @@ h3,
 h4 {
   font-size: 1.3rem;
 }
+
+#root {
+  height: 100%;
+  .layout {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    main {
+      margin: 0 3%;
+    }
+    footer {
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      padding-top: 2rem;
+    }
+  }
+}
+
+// @media (max-width: 800px) {
+//   #root {
+//     .layout {
+//       main {
+//         margin: unset;
+//       }
+//     }
+//   }
+// }

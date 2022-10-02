@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { initTournamentShort } from "../../Helpers/initValues";
 import { TournamentShortType, TournamentType } from "../../Types/tournament";
 
 interface TournamentState {
@@ -8,13 +9,7 @@ interface TournamentState {
 }
 
 const initialState: TournamentState = {
-  tournamentShort: {
-    id: 0,
-    title: "",
-    uploaderUuid: "",
-    dateUpload: 0,
-    uploader: "",
-  },
+  tournamentShort: initTournamentShort,
   tournament: undefined,
   tournaments: [],
 };

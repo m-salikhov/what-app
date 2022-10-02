@@ -28,19 +28,18 @@ const AddTournament = () => {
     }
   };
   const addTournament = async () => {
-    const res = await _axios.post("/tournaments", {
+    await _axios.post("/tournaments", {
       ...tournament,
       dateUpload: Date.now(),
       uploaderUuid: currentUser?.id,
       uploader: currentUser?.username,
     });
-    console.log("res", res.data);
   };
 
   console.log("tournament", tournament);
 
   return (
-    <div className="add__wrapper">
+    <main className="add__wrapper">
       <div className="add">
         <AddTournamentInfo handleChange={handleChange} />
         <div className="add-t__button">
@@ -66,7 +65,7 @@ const AddTournament = () => {
           </button>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

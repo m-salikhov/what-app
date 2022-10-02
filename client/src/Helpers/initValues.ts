@@ -1,16 +1,21 @@
-import { TournamentType } from "../Types/tournament";
+import { TournamentShortType, TournamentType } from "../Types/tournament";
 import { UserType } from "../Types/user";
 
-export const initTournament: TournamentType = {
+export const initTournamentShort: TournamentShortType = {
+  id: 0,
   title: "",
   date: 0,
   tours: 0,
   questionsQuantity: 0,
-  questions: [],
   uploader: "",
   editors: [],
   dateUpload: 0,
   uploaderUuid: "",
+};
+
+export const initTournament: TournamentType = {
+  ...initTournamentShort,
+  questions: [],
 };
 
 export const initUser: UserType = {

@@ -13,6 +13,11 @@ export class TournamentsController {
     return this.tournamentsService.createTournamet(tournament);
   }
 
+  @Get('/allshort')
+  async getAllTournamentsShort() {
+    return this.tournamentsService.getAllTournamentsShort();
+  }
+
   @Get('/last/:n')
   async getLastTen(@Param('n') n: string) {
     return this.tournamentsService.getLastAddTournaments(+n);

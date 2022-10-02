@@ -1,10 +1,24 @@
 import "./header.scss";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../Hooks/redux";
+import { useAppSelector, useAppDispatch } from "../../Hooks/redux";
+import { _axios } from "../../Helpers/_axios";
+import { userSlice } from "../../Store/reducers/UserSlice";
 
 const Header = () => {
   const { currentUser } = useAppSelector((state) => state.userReducer);
+  const dispatch = useAppDispatch();
+
+  const logout = async () => {
+    await _axios
+      .get("/auth/logout")
+      .then((res) => console.log("res.data", res.data))
+      .catch(() => console.log("ошибка"));
+
+    dispatch(userSlice.actions.resetCurrentUser());
+  };
+
   console.log("currentUser", currentUser);
+
   return (
     <header>
       <h1>База вопросов</h1>
@@ -26,7 +40,7 @@ const Header = () => {
             <Link to="/">Режим</Link>
           </li> */}
           <li>
-            <Link to="/">Все турниры</Link>
+            <Link to="/all">Все турниры</Link>
           </li>
           {/*TODO Перенести в турниры на главной */}
           {/* <li>
@@ -41,7 +55,9 @@ const Header = () => {
           {/* TODO войти/выйти  */}
           {currentUser?.id ? (
             <li>
-              <Link to="/entry">Выйти</Link>
+              <Link to="/" onClick={logout}>
+                Выйти
+              </Link>
             </li>
           ) : (
             <li>

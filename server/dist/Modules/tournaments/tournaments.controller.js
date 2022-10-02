@@ -24,6 +24,9 @@ let TournamentsController = class TournamentsController {
     async createTournament(tournament) {
         return this.tournamentsService.createTournamet(tournament);
     }
+    async getAllTournamentsShort() {
+        return this.tournamentsService.getAllTournamentsShort();
+    }
     async getLastTen(n) {
         return this.tournamentsService.getLastAddTournaments(+n);
     }
@@ -45,6 +48,12 @@ __decorate([
     __metadata("design:paramtypes", [tournament_dto_1.TournamentDto]),
     __metadata("design:returntype", Promise)
 ], TournamentsController.prototype, "createTournament", null);
+__decorate([
+    (0, common_1.Get)('/allshort'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], TournamentsController.prototype, "getAllTournamentsShort", null);
 __decorate([
     (0, common_1.Get)('/last/:n'),
     __param(0, (0, common_1.Param)('n')),

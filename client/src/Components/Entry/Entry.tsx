@@ -67,7 +67,7 @@ const Entry = () => {
     <>
       {/* окно при успешной регистрации */}
       {isModalOpen ? <ModalReg /> : null}
-      <div className="entry__wrapper">
+      <main className="entry__wrapper">
         <div className="entry">
           <div className="entry__container">
             <div className="entry__img">
@@ -144,7 +144,7 @@ const Entry = () => {
             </form>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };

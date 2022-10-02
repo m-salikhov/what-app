@@ -1,7 +1,6 @@
-import { ChangeEvent, FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import splitQuestion from "../../Helpers/splitQuestion";
 import { QuestionType } from "../../Types/question";
-import { TournamentType } from "../../Types/tournament";
 
 interface AddQuestionProp {
   handleChangeQuestion: (q: QuestionType) => void;
@@ -9,7 +8,7 @@ interface AddQuestionProp {
 }
 
 const getTourNumber = (n: number) => {
-  if (n == 0) {
+  if (n === 0) {
     return 0;
   } else if (n > 0 && n < 13) {
     return 1;
