@@ -6,12 +6,12 @@ import chart from "./bar_chart.svg";
 
 import LineAll from "./LineAll";
 import { sortFunction } from "./sortFunction";
+type FieldName = keyof Omit<TournamentShortType, "id">;
 
 const All = () => {
   //ts = tournaments Все турниры
   const [ts, setTs] = useState<TournamentShortType[]>([]);
   const [field, setField] = useState("");
-  const [redraw, setRedraw] = useState(false);
 
   useEffect(() => {
     axios.get(`/tournaments/allshort`).then((res) => {
@@ -20,12 +20,11 @@ const All = () => {
   }, []);
 
   function sort(e: MouseEvent<HTMLDivElement>) {
-    const { className } = e.currentTarget;
+    const className = e.currentTarget.className as FieldName;
     if (field === className) {
-      setTs((prev) => prev.reverse());
-      setRedraw(!redraw);
+      setTs((prev) => [...prev.reverse()]);
     } else {
-      sortFunction(ts, className);
+      setTs((prev) => sortFunction(prev, className));
       setField(className);
     }
   }
