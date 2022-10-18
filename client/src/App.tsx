@@ -4,10 +4,10 @@ import AddTournament from "./Components/AddTournament/AddTournament";
 import All from "./Components/AllTournaments/All";
 import Entry from "./Components/Entry/Entry";
 import Layout from "./Components/Lyout/Layout";
-// import Header from "./Components/Headers/Header";
-
 import Main from "./Components/Main/Main";
+import Profile from "./Components/Profile/Profile";
 import Tournament from "./Components/Tournament/Tournament";
+import PrivateRoute from "./hoc/PrivateRoute";
 
 function App() {
   return (
@@ -18,8 +18,23 @@ function App() {
           <Route index element={<Main />} />
           <Route path="entry" element={<Entry />} />
           <Route path="all" element={<All />} />
-          <Route path="add" element={<AddTournament />} />
+          <Route
+            path="add"
+            element={
+              <PrivateRoute>
+                <AddTournament />
+              </PrivateRoute>
+            }
+          />
           <Route path="tournament/:id" element={<Tournament />} />
+          <Route
+            path="profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

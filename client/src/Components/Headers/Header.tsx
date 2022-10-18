@@ -1,12 +1,14 @@
 import "./header.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../Hooks/redux";
 import { _axios } from "../../Helpers/_axios";
 import { userSlice } from "../../Store/reducers/UserSlice";
+import owlBW from "./owlBW.svg";
 
 const Header = () => {
   const { currentUser } = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const logout = async () => {
     await _axios
@@ -21,7 +23,11 @@ const Header = () => {
 
   return (
     <header>
-      <h1>База вопросов</h1>
+      <div onClick={() => navigate("/")}>
+        <img src={owlBW} alt="заглавное изображение" />
+        <h2>База вопросов</h2>
+      </div>
+
       <nav>
         <ul>
           {currentUser?.role === "superuser" && (
@@ -42,14 +48,10 @@ const Header = () => {
           <li>
             <Link to="/all">Все турниры</Link>
           </li>
-          {/*TODO Перенести в турниры на главной */}
-          {/* <li>
-            <Link to="/">Случайный турнир</Link>
-          </li> */}
           {/* TODO только у пользователя и админа */}
           {currentUser?.id && (
             <li>
-              <Link to="/">Профиль</Link>
+              <Link to="/profile">Профиль</Link>
             </li>
           )}
           {/* TODO войти/выйти  */}
