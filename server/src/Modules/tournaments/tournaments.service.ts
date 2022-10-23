@@ -123,6 +123,13 @@ export class TournamentsService {
     return tournaments;
   }
 
+  async getTournamentsByUploader(uploaderId: string) {
+    const tournaments = await this.tournamentRepo.find({
+      where: { uploaderUuid: uploaderId },
+    });
+    return tournaments;
+  }
+
   normalizeQuestions(arr: Question[]): QuestionDto[] {
     return arr.map((el) => {
       const normSources = el.source.map((el) => el.link);

@@ -33,6 +33,10 @@ let AuthService = class AuthService {
             access_token: this.jwtService.sign(payload),
         };
     }
+    async getUser(id) {
+        const user = await this.usersService.getUser({ id });
+        return user;
+    }
 };
 AuthService = __decorate([
     (0, common_1.Injectable)(),

@@ -19,8 +19,6 @@ const Header = () => {
     dispatch(userSlice.actions.resetCurrentUser());
   };
 
-  console.log("currentUser", currentUser);
-
   return (
     <header>
       <div onClick={() => navigate("/")}>
@@ -30,7 +28,7 @@ const Header = () => {
 
       <nav>
         <ul>
-          {currentUser?.role === "superuser" && (
+          {currentUser?.id === "superuser" && (
             <li>
               <Link to="/edit"> Редактировать</Link>
             </li>

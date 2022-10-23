@@ -3,3 +3,7 @@ export declare class GetUserDto {
     username?: string;
     email?: string;
 }
+export declare class updatePassDto {
+    id: string;
+    newPass: string;
+}

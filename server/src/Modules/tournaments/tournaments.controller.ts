@@ -18,6 +18,11 @@ export class TournamentsController {
     return this.tournamentsService.getAllTournamentsShort();
   }
 
+  @Get('/allbyuploader/:id')
+  async getTournamentsByUploader(@Param('id') id: string) {
+    return this.tournamentsService.getTournamentsByUploader(id);
+  }
+
   @Get('/last/:n')
   async getLastTen(@Param('n') n: string) {
     return this.tournamentsService.getLastAddTournaments(+n);

@@ -18,6 +18,8 @@ const bcrypt = require("bcrypt");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("./entity/user.entity");
+const get_user_dto_1 = require("./dto/get-user.dto");
+const jwt_guard_1 = require("../auth/guards/jwt.guard");
 let UsersService = class UsersService {
     constructor(userRepo) {
         this.userRepo = userRepo;
@@ -47,6 +49,12 @@ let UsersService = class UsersService {
         });
         return user.username;
     }
+    async updatePassword(passworObj) {
+        const user = await this.userRepo.findOne({ where: { id: passworObj.id } });
+        const hash = await bcrypt.hash(passworObj.newPass, 10);
+        await this.userRepo.save(Object.assign(Object.assign({}, user), { password: hash }));
+        return 'Пароль изменён';
+    }
     async deleteUser(id) {
         const user = await this.userRepo.findOne({ where: { id } });
         if (!user)
@@ -54,6 +62,12 @@ let UsersService = class UsersService {
         return await this.userRepo.remove(user);
     }
 };
+__decorate([
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [get_user_dto_1.updatePassDto]),
+    __metadata("design:returntype", Promise)
+], UsersService.prototype, "updatePassword", null);
 UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),

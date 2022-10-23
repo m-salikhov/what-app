@@ -127,6 +127,12 @@ let TournamentsService = class TournamentsService {
         const tournaments = await this.tournamentRepo.find();
         return tournaments;
     }
+    async getTournamentsByUploader(uploaderId) {
+        const tournaments = await this.tournamentRepo.find({
+            where: { uploaderUuid: uploaderId },
+        });
+        return tournaments;
+    }
     normalizeQuestions(arr) {
         return arr.map((el) => {
             const normSources = el.source.map((el) => el.link);

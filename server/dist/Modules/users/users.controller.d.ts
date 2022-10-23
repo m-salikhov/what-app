@@ -1,5 +1,5 @@
 import { CreateUserDto } from './dto/create-user.dto';
-import { GetUserDto } from './dto/get-user.dto';
+import { GetUserDto, updatePassDto } from './dto/get-user.dto';
 import { UsersService } from './users.service';
 export declare class UsersController {
     private readonly usersService;
@@ -13,5 +13,6 @@ export declare class UsersController {
         email: string;
         date: number;
     }>;
+    updateUser(passObj: updatePassDto): Promise<string>;
     delOneCar(id: string): Promise<import("./entity/user.entity").User>;
 }

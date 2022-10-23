@@ -43,6 +43,9 @@ let UsersController = class UsersController {
         const { password } = _user, user = __rest(_user, ["password"]);
         return user;
     }
+    updateUser(passObj) {
+        return this.usersService.updatePassword(passObj);
+    }
     delOneCar(id) {
         return this.usersService.deleteUser(id);
     }
@@ -68,6 +71,13 @@ __decorate([
     __metadata("design:paramtypes", [get_user_dto_1.GetUserDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getUser", null);
+__decorate([
+    (0, common_1.Put)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [get_user_dto_1.updatePassDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateUser", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),

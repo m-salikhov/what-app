@@ -1,15 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { initUser } from "../../Helpers/initValues";
 import { UserType } from "../../Types/user";
 
 interface UserState {
-  currentUser?: UserType;
+  currentUser: UserType;
   users: UserType[];
   isLoading: boolean;
   error: string;
 }
 
 const initialState: UserState = {
-  currentUser: undefined,
+  currentUser: initUser,
   users: [],
   isLoading: false,
   error: "",
@@ -19,12 +20,12 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setCurrentUser(state, action: PayloadAction<UserType | undefined>) {
+    setCurrentUser(state, action: PayloadAction<UserType>) {
       state.currentUser = action.payload;
     },
 
     resetCurrentUser(state) {
-      state.currentUser = undefined;
+      state.currentUser = initUser;
     },
 
     resetError(state) {
@@ -41,7 +42,7 @@ export const userSlice = createSlice({
     },
     userFetchingError(state, action: PayloadAction<string>) {
       state.isLoading = false;
-      state.currentUser = undefined;
+      state.currentUser = initUser;
       state.error = action.payload;
     },
   },

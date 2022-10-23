@@ -3,3 +3,8 @@ export class GetUserDto {
   username?: string;
   email?: string;
 }
+
+export class updatePassDto {
+  id: string;
+  newPass: string;
+}

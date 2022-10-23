@@ -25,11 +25,21 @@ let AuthController = class AuthController {
         const token = await this.authService.login(req.user);
         response.cookie('access_token', token.access_token, {
             httpOnly: true,
-            maxAge: 172800000,
+            maxAge: 86400000,
         });
         return req.user;
     }
-    logout(response) {
+    async loginFirst(req, response) {
+        const token = await this.authService.login(req.user);
+        const user = await this.authService.getUser(req.user.id);
+        response.cookie('access_token', token.access_token, {
+            httpOnly: true,
+            maxAge: 86400000,
+        });
+        return user;
+    }
+    logout(response, req) {
+        console.log(req.cookies);
         response.cookie('access_token', '');
         return 'logout';
     }
@@ -45,10 +55,20 @@ __decorate([
 ], AuthController.prototype, "login", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
+    (0, common_1.Get)('logfirst'),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Res)({ passthrough: true })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "loginFirst", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Get)('logout'),
     __param(0, (0, common_1.Res)({ passthrough: true })),
+    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "logout", null);
 AuthController = __decorate([

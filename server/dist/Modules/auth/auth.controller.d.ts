@@ -4,5 +4,6 @@ export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
     login(req: any, response: Response): Promise<any>;
-    logout(response: Response): string;
+    loginFirst(req: any, response: Response): Promise<import("../users/entity/user.entity").User>;
+    logout(response: Response, req: any): string;
 }

@@ -27,6 +27,9 @@ let TournamentsController = class TournamentsController {
     async getAllTournamentsShort() {
         return this.tournamentsService.getAllTournamentsShort();
     }
+    async getTournamentsByUploader(id) {
+        return this.tournamentsService.getTournamentsByUploader(id);
+    }
     async getLastTen(n) {
         return this.tournamentsService.getLastAddTournaments(+n);
     }
@@ -54,6 +57,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], TournamentsController.prototype, "getAllTournamentsShort", null);
+__decorate([
+    (0, common_1.Get)('/allbyuploader/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], TournamentsController.prototype, "getTournamentsByUploader", null);
 __decorate([
     (0, common_1.Get)('/last/:n'),
     __param(0, (0, common_1.Param)('n')),
