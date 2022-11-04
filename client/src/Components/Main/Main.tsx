@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { QuestionType } from "../../Types/question";
 import Question from "../Elements/Question/Question";
+import SkeletonQuestion from "../Elements/Question/SkeletonQuestion";
 import LastTournaments from "./LastTournaments";
 import "./main.scss";
 import refreshIcon from "./refresh.svg";
@@ -10,11 +11,16 @@ const Main = () => {
   const [message, setMessage] = useState("");
   const [newRandom, setNewRandom] = useState(0);
   const [randQuestions, setRandQuestions] = useState<QuestionType[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("/tournaments/random/4").then((res) => {
-      setRandQuestions(res.data);
-    });
+    axios
+      .get("/tournaments/random/4")
+      .then((res) => {
+        setRandQuestions(res.data);
+        setLoading(false);
+      })
+      .catch((e: any) => setMessage(e.response.data.message));
   }, [newRandom]);
 
   return (
@@ -23,7 +29,13 @@ const Main = () => {
         <div className="main-content__random">
           <div className="main-content__refresh">
             {" "}
-            <div className="refresh" onClick={() => setNewRandom((p) => ++p)}>
+            <div
+              className="refresh"
+              onClick={() => {
+                setLoading(true);
+                setNewRandom((p) => ++p);
+              }}
+            >
               {" "}
               <h2>Случайные вопросы</h2>
               <div>
@@ -37,9 +49,11 @@ const Main = () => {
               </div>
             </div>
           </div>
-          {randQuestions.map((v) => (
-            <Question q={v} random={true} key={v.id} />
-          ))}
+          {loading && <SkeletonQuestion count={4} />}
+          {!loading &&
+            randQuestions.map((v) => (
+              <Question q={v} random={true} key={v.id} />
+            ))}
         </div>
         <div className="main-content__tournaments">
           <LastTournaments />

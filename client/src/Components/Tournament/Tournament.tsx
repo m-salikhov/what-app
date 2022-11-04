@@ -7,15 +7,21 @@ import { initTournament } from "../../Helpers/initValues";
 import Question from "../Elements/Question/Question";
 import Back from "../Elements/Back/Back";
 import { useParams } from "react-router-dom";
+import SkeletonQuestion from "../Elements/Question/SkeletonQuestion";
 
 const Tournament = () => {
   const [t, setT] = useState<TournamentType>(initTournament);
   const { id } = useParams();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`/tournaments/${id}`).then((res) => {
-      setT(res.data);
-    });
+    axios
+      .get(`/tournaments/${id}`)
+      .then((res) => {
+        setT(res.data);
+        setLoading(false);
+      })
+      .catch((e: any) => console.log(e.response.data.message));
   }, [id]);
 
   return (
@@ -54,7 +60,7 @@ const Tournament = () => {
           {" "}
           <Back />
         </div>
-
+        {loading && <SkeletonQuestion count={6} />}
         {t.questions.map((v) => (
           <Question q={v} key={v.id} />
         ))}
